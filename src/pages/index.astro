@@ -10,22 +10,23 @@ const title = "Conversiv — The Exit Agency";
     <meta name="description" content="Conversiv is the exit agency for small business. We optimize your message and operations to maximize your value when it's time to sell." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <style>
       /* ── Reset & Root ─────────────────────────────────────────── */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       :root {
-        --navy:   #09111F;
-        --navy2:  #0F1B2E;
-        --navy3:  #162438;
-        --gold:   #C89A3A;
-        --gold2:  #E3B44B;
-        --cream:  #F7F4EE;
-        --white:  #FDFCF9;
+        --navy:   #1A2D45;
+        --navy2:  #223655;
+        --navy3:  #285072;
+        --gold:   #F18A00;
+        --gold2:  #FF9E1B;
+        --cream:  #F7F6F2;
+        --white:  #FFFFFF;
         --gray:   #7B8299;
-        --gray2:  #B4BAC8;
+        --gray2:  #A8B0BF;
+        --blue:   #4381C3;
         --serif:  'Playfair Display', Georgia, serif;
-        --sans:   'Inter', -apple-system, sans-serif;
+        --sans:   'Roboto', -apple-system, sans-serif;
       }
       html { scroll-behavior: smooth; }
       body {
@@ -69,13 +70,13 @@ const title = "Conversiv — The Exit Agency";
         display: flex; align-items: center; justify-content: space-between;
       }
       .nav-logo {
-        font-family: var(--serif);
-        font-size: 1.35rem;
-        font-weight: 700;
-        letter-spacing: -0.01em;
-        color: var(--white);
+        display: flex;
+        align-items: center;
       }
-      .nav-logo span { color: var(--gold); }
+      .nav-logo img {
+        height: 28px;
+        width: auto;
+      }
       .nav-links {
         display: flex; gap: 2.5rem; list-style: none;
         font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em;
@@ -99,8 +100,8 @@ const title = "Conversiv — The Exit Agency";
         display: flex; flex-direction: column; justify-content: center;
         padding: 10rem 0 6rem;
         background:
-          radial-gradient(ellipse 80% 60% at 60% 40%, rgba(200,154,58,0.06) 0%, transparent 70%),
-          linear-gradient(160deg, #09111F 0%, #0C1628 50%, #09111F 100%);
+          radial-gradient(ellipse 80% 60% at 60% 40%, rgba(241,138,0,0.07) 0%, transparent 70%),
+          linear-gradient(160deg, #1A2D45 0%, #1E3352 50%, #1A2D45 100%);
         border-bottom: 1px solid rgba(200,154,58,0.12);
         position: relative;
         overflow: hidden;
@@ -108,7 +109,7 @@ const title = "Conversiv — The Exit Agency";
       .hero::before {
         content: '';
         position: absolute; inset: 0;
-        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C89A3A' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F18A00' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         opacity: 0.4;
       }
       .hero-label {
@@ -438,7 +439,7 @@ const title = "Conversiv — The Exit Agency";
 
       /* ── FOOTER ───────────────────────────────────────────────── */
       footer {
-        background: #060C16;
+        background: #111E2E;
         padding: 3rem 0;
         border-top: 1px solid rgba(200,154,58,0.1);
       }
@@ -446,11 +447,11 @@ const title = "Conversiv — The Exit Agency";
         display: flex; align-items: center; justify-content: space-between;
         flex-wrap: wrap; gap: 1.5rem;
       }
-      .footer-logo {
-        font-family: var(--serif); font-size: 1.1rem;
-        font-weight: 700; color: var(--white);
+      .footer-logo img {
+        height: 24px;
+        width: auto;
+        opacity: 0.9;
       }
-      .footer-logo span { color: var(--gold); }
       .footer-tagline {
         font-size: 0.75rem; color: var(--gray);
         letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.35rem;
@@ -484,7 +485,7 @@ const title = "Conversiv — The Exit Agency";
     <nav id="nav">
       <div class="container">
         <div class="nav-inner">
-          <a href="/" class="nav-logo">Convers<span>iv</span></a>
+          <a href="/" class="nav-logo"><img src="/conversiv-logo.svg" alt="Conversiv" /></a>
           <ul class="nav-links">
             <li><a href="#services">Services</a></li>
             <li><a href="#agentx">OptiqOS</a></li>
@@ -740,7 +741,7 @@ const title = "Conversiv — The Exit Agency";
       <div class="container">
         <div class="footer-inner">
           <div>
-            <div class="footer-logo">Convers<span>iv</span></div>
+            <div class="footer-logo"><img src="/conversiv-logo.svg" alt="Conversiv" /></div>
             <div class="footer-tagline">The Exit Agency for Small Business</div>
           </div>
           <ul class="footer-links">
