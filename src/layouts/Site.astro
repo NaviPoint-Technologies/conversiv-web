@@ -1,0 +1,193 @@
+---
+const {
+  title = "Conversiv — The Exit Agency",
+  description = "Conversiv helps owner-operators position their business for a max selling price.",
+  active = ""
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/conversiv-mark.svg" />
+    <link rel="apple-touch-icon" href="/conversiv-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <style is:inline>
+      /* ── Reset & Root ──────────────────────────────────────────────── */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --cream:   #F7F6F2;
+        --cream2:  #EFEDE6;
+        --cream3:  #DCD9CF;
+        --ink:     #1A2D45;
+        --ink2:    #223655;
+        --amber:   #F18A00;
+        --amber2:  #FF9E1B;
+        --blue:    #4381C3;
+        --gray:    #5A6478;
+        --gray2:   #8893A8;
+        --muted:   #C4CAD4;
+        --navy:    #1A2D45;
+        --navy2:   #142236;
+        --serif:   'Playfair Display', Georgia, serif;
+        --sans:    'Roboto', -apple-system, sans-serif;
+      }
+      html { scroll-behavior: smooth; }
+      body { font-family: var(--sans); background: var(--cream); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; font-weight: 400; }
+      h1, h2, h3 { font-family: var(--serif); line-height: 1.1; font-weight: 700; color: var(--ink); }
+      a { color: inherit; text-decoration: none; }
+      .container { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
+
+      /* ── TOP BAR ─────────────────────────────────────────────────────── */
+      .top-bar { background: var(--amber); color: #fff; text-align: center; padding: 0.55rem 1rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.03em; }
+      .top-bar a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+      /* ── NAV ─────────────────────────────────────────────────────────── */
+      nav { position: sticky; top: 0; z-index: 100; background: rgba(247,246,242,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--cream3); padding: 1.25rem 0; }
+      .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+      .nav-logo { display: inline-flex; align-items: baseline; gap: 0.4rem; font-family: var(--serif); font-size: 1.55rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+      .nav-logo::after { content: ''; display: inline-block; width: 6px; height: 6px; background: var(--amber); border-radius: 50%; transform: translateY(-2px); }
+      .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray); }
+      .nav-links a { transition: color 0.2s; }
+      .nav-links a:hover, .nav-links a.active { color: var(--amber); }
+      .nav-cta { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--ink); padding: 0.65rem 1.5rem; border-radius: 2px; transition: background 0.2s, transform 0.15s; white-space: nowrap; }
+      .nav-cta:hover { background: var(--amber); transform: translateY(-1px); }
+
+      /* ── BUTTONS ──────────────────────────────────────────────────────── */
+      .btn-ink { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--ink); color: #fff; padding: 1rem 2rem; border-radius: 2px; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; }
+      .btn-ink:hover { background: var(--amber); transform: translateY(-2px); }
+      .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; border: 1.5px solid var(--ink); color: var(--ink); padding: 1rem 2rem; border-radius: 2px; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; transition: border-color 0.2s, background 0.2s, color 0.2s; }
+      .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+      .btn-amber { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--amber); color: #fff; padding: 1rem 2rem; border-radius: 2px; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; }
+      .btn-amber:hover { background: var(--amber2); transform: translateY(-2px); }
+      .btn-ghost-light { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(247,246,242,0.3); color: rgba(247,246,242,0.8); padding: 1rem 2rem; border-radius: 2px; font-size: 0.875rem; font-weight: 500; transition: border-color 0.2s, color 0.2s; }
+      .btn-ghost-light:hover { border-color: var(--amber2); color: #fff; }
+
+      /* ── SHARED SECTION DRESS ───────────────────────────────────────── */
+      .section-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem; display: block; }
+      .section-heading { font-size: clamp(1.9rem, 3.2vw, 2.8rem); color: var(--ink); margin-bottom: 3.5rem; max-width: 720px; }
+      .section-heading em { font-style: italic; color: var(--amber); }
+
+      /* ── PAGE HERO (used by inner pages — homepage has its own hero) ── */
+      .page-hero { background: var(--cream); padding: 6rem 0 5rem; border-bottom: 1px solid var(--cream3); }
+      .page-hero-inner { max-width: 960px; }
+      .page-hero-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+      .page-hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
+      .page-hero h1 { font-size: clamp(2.6rem, 5.6vw, 5.2rem); line-height: 1.02; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; }
+      .page-hero h1 em { font-style: italic; color: var(--amber); }
+      .page-hero-sub { font-size: 1.15rem; color: var(--gray); max-width: 700px; line-height: 1.65; font-weight: 300; margin-bottom: 2.5rem; }
+      .page-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+      /* ── CTA (dark) ───────────────────────────────────────────────────── */
+      .cta-dark { background: var(--navy2); padding: 8rem 0; text-align: center; }
+      .cta-dark h2 { font-size: clamp(2.2rem, 4.5vw, 3.8rem); color: #fff; max-width: 720px; margin: 0 auto 1.25rem; line-height: 1.08; font-weight: 700; }
+      .cta-dark h2 em { font-style: italic; color: var(--amber2); }
+      .cta-dark p { font-size: 1rem; color: rgba(247,246,242,0.65); max-width: 520px; margin: 0 auto 2.5rem; font-weight: 300; line-height: 1.75; }
+      .cta-dark-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+      .cta-note { margin-top: 1.75rem; font-size: 0.75rem; color: rgba(247,246,242,0.45); letter-spacing: 0.07em; }
+
+      /* ── FOOTER ──────────────────────────────────────────────────────── */
+      footer { background: var(--ink); padding: 4rem 0 3rem; color: rgba(247,246,242,0.7); }
+      .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 3rem; margin-bottom: 3rem; }
+      .footer-brand-logo { font-family: var(--serif); font-size: 1.55rem; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+      .footer-brand-logo::after { content: ''; display: inline-block; width: 6px; height: 6px; background: var(--amber); border-radius: 50%; margin-left: 0.4rem; transform: translateY(-4px); }
+      .footer-brand-tag { font-size: 0.68rem; color: var(--amber2); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 0.5rem; font-weight: 600; }
+      .footer-brand-desc { font-size: 0.85rem; color: rgba(247,246,242,0.6); line-height: 1.7; font-weight: 300; margin-top: 0.85rem; max-width: 260px; }
+      .footer-col-head { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber2); margin-bottom: 1.1rem; }
+      .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+      .footer-links-list a { font-size: 0.85rem; color: rgba(247,246,242,0.7); transition: color 0.2s; }
+      .footer-links-list a:hover { color: var(--amber2); }
+      .footer-bar { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(247,246,242,0.12); padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+      .footer-copy { font-size: 0.72rem; color: rgba(247,246,242,0.45); }
+
+      /* ── Fade-in ─────────────────────────────────────────────────────── */
+      .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      .fade-in.visible { opacity: 1; transform: none; }
+
+      /* ── Responsive ──────────────────────────────────────────────────── */
+      @media (max-width: 960px) {
+        .nav-links, .nav-cta { display: none; }
+        .footer-inner { grid-template-columns: 1fr 1fr; }
+      }
+    </style>
+    <slot name="head" />
+  </head>
+  <body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      Get your free exit audit in 15 minutes. <a href="/start">Start now</a>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+      <div class="container">
+        <div class="nav-inner">
+          <a href="/" class="nav-logo">Conversiv</a>
+          <ul class="nav-links">
+            <li><a href="/" class={active === 'home' ? 'active' : ''}>Exit Agency</a></li>
+            <li><a href="/services/messaging" class={active === 'messaging' ? 'active' : ''}>Messaging</a></li>
+            <li><a href="/agencies" class={active === 'agencies' ? 'active' : ''}>For Agencies</a></li>
+            <li><a href="/optiqos" class={active === 'optiqos' ? 'active' : ''}>OptiqOS</a></li>
+          </ul>
+          <a href="/start" class="nav-cta">Free exit audit</a>
+        </div>
+      </div>
+    </nav>
+
+    <slot />
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <div>
+            <div class="footer-brand-logo">Conversiv</div>
+            <div class="footer-brand-tag">The Exit Agency</div>
+            <p class="footer-brand-desc">We help owner-operators position their business for a max selling price. So you get more for it. Sooner.</p>
+          </div>
+          <div>
+            <div class="footer-col-head">Services</div>
+            <ul class="footer-links-list">
+              <li><a href="/">Exit Agency</a></li>
+              <li><a href="/services/messaging">Messaging &amp; Brand</a></li>
+              <li><a href="/agencies">For Agencies</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-head">Platform</div>
+            <ul class="footer-links-list">
+              <li><a href="/optiqos">OptiqOS</a></li>
+              <li><a href="/agentexit">AgentExit</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-head">Connect</div>
+            <ul class="footer-links-list">
+              <li><a href="/start">Free exit audit</a></li>
+              <li><a href="/demo">Book your demo</a></li>
+              <li><a href="mailto:hello@conversiv.com">hello@conversiv.com</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <div class="footer-copy">&copy; 2026 Conversiv. All rights reserved.</div>
+          <div class="footer-copy">Exit strategy &middot; Message optimization &middot; OptiqOS</div>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      const fadeObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+    </script>
+
+  </body>
+</html>

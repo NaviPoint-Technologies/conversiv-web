@@ -5,3 +5,10 @@ dist/
 .env.local
 .DS_Store
 *.log
+
+# Local Claude Code config
+.claude/
+
+# Local backups
+*.bak
+_*.bak

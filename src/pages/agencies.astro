@@ -1,0 +1,178 @@
+---
+import Site from '../layouts/Site.astro';
+---
+<Site
+  title="For Agencies — Conversiv"
+  description="Conversiv is a niche specialist in messaging and brand positioning. Bring us in. Keep your client relationship. Solve the gap that drives them elsewhere."
+  active="agencies"
+>
+  <style is:inline slot="head">
+    .ag-pillars { background: var(--cream); padding: 7rem 0; border-bottom: 1px solid var(--cream3); }
+    .ag-pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .ag-pillar { background: #fff; border: 1px solid var(--cream3); border-radius: 4px; padding: 2.75rem; }
+    .ag-pillar h3 { font-size: 1.4rem; color: var(--ink); margin-bottom: 1rem; font-family: var(--sans); font-weight: 700; letter-spacing: -0.005em; }
+    .ag-pillar ul { list-style: none; }
+    .ag-pillar li { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.6rem 0; font-size: 0.92rem; color: var(--ink2); border-bottom: 1px solid rgba(26,45,69,0.06); font-weight: 400; }
+    .ag-pillar.do li::before { content: '\2192'; color: var(--amber); flex-shrink: 0; font-weight: 700; margin-top: 0.1rem; }
+    .ag-pillar.dont li::before { content: '\2715'; color: var(--gray2); flex-shrink: 0; font-weight: 700; margin-top: 0.1rem; }
+    .ag-pillar.dont li { color: var(--gray); }
+    .ag-pillar-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.45rem; }
+    .ag-pillar.do .ag-pillar-tag { background: rgba(241,138,0,0.12); color: var(--amber); }
+    .ag-pillar.dont .ag-pillar-tag { background: rgba(155,155,155,0.15); color: var(--gray); }
+
+    .ag-how { background: var(--cream2); padding: 8rem 0; border-bottom: 1px solid var(--cream3); }
+    .ag-how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 3rem; }
+    .ag-how-step { position: relative; }
+    .ag-how-num { font-family: var(--serif); font-size: 3rem; color: var(--amber); opacity: 0.25; line-height: 1; margin-bottom: 1rem; font-weight: 700; }
+    .ag-how-step h3 { font-size: 1.25rem; color: var(--ink); margin-bottom: 0.8rem; font-family: var(--sans); font-weight: 700; }
+    .ag-how-step p { font-size: 0.95rem; color: var(--gray); line-height: 1.75; font-weight: 300; }
+
+    .ag-reasons { background: var(--cream); padding: 8rem 0; border-bottom: 1px solid var(--cream3); }
+    .ag-reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .ag-reason { background: #fff; border: 1px solid var(--cream3); border-radius: 4px; padding: 2.5rem; }
+    .ag-reason-num { font-family: var(--serif); font-size: 1.4rem; color: var(--amber); margin-bottom: 1rem; font-weight: 700; }
+    .ag-reason h3 { font-size: 1.15rem; color: var(--ink); margin-bottom: 0.85rem; font-family: var(--sans); font-weight: 700; letter-spacing: -0.005em; }
+    .ag-reason p { font-size: 0.92rem; color: var(--gray); line-height: 1.7; font-weight: 300; }
+
+    .ag-proof { background: var(--cream2); padding: 6rem 0; text-align: center; border-bottom: 1px solid var(--cream3); }
+    .ag-proof-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); margin-bottom: 1.5rem; display: block; }
+    .ag-proof-names { display: flex; justify-content: center; gap: 0; flex-wrap: wrap; }
+    .ag-proof-names span { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2); padding: 0 1.5rem; border-right: 1px solid var(--cream3); }
+    .ag-proof-names span:last-child { border-right: none; }
+
+    @media (max-width: 960px) {
+      .ag-pillars-grid, .ag-how-grid, .ag-reasons-grid { grid-template-columns: 1fr; }
+      .ag-proof-names span { padding: 0.5rem 1rem; border-right: none; border-bottom: 1px solid var(--cream3); }
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner fade-in">
+        <div class="page-hero-eyebrow">For ad agencies</div>
+        <h1>The specialist your clients ask for, <em>before they leave you.</em></h1>
+        <p class="page-hero-sub">
+          Conversiv is a niche-specific messaging and brand-positioning partner for ad agencies. Most agencies don&rsquo;t have this kind of expertise on the bench. We do. Bring us in, keep your client relationship, and close the gap that usually drives them somewhere else.
+        </p>
+        <div class="page-hero-actions">
+          <a href="/contact" class="btn-ink">Start a partner conversation &rarr;</a>
+          <a href="#how-it-works" class="btn-outline">See how it works</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DO / DON'T -->
+  <section class="ag-pillars">
+    <div class="container">
+      <span class="section-eyebrow">The lane</span>
+      <h2 class="section-heading fade-in">A specialist, not a competitor.</h2>
+      <div class="ag-pillars-grid">
+        <div class="ag-pillar do fade-in">
+          <span class="ag-pillar-tag">What we do</span>
+          <h3>Messaging &amp; brand positioning</h3>
+          <ul>
+            <li>Brand &amp; message positioning strategy</li>
+            <li>Audience definition and segmentation</li>
+            <li>Story architecture for buyers and customers</li>
+            <li>Exit-readiness positioning for clients preparing to sell</li>
+            <li>Workshops, sprints, and named deliverables</li>
+            <li>Cross-channel message consistency</li>
+          </ul>
+        </div>
+        <div class="ag-pillar dont fade-in">
+          <span class="ag-pillar-tag">What we don&rsquo;t do</span>
+          <h3>Anywhere your agency already operates</h3>
+          <ul>
+            <li>Media buying or paid ad management</li>
+            <li>Web design or web build</li>
+            <li>SEO or content distribution</li>
+            <li>Creative production or asset design</li>
+            <li>Public relations</li>
+            <li>Account management or client servicing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="ag-how" id="how-it-works">
+    <div class="container">
+      <span class="section-eyebrow">How partnerships work</span>
+      <h2 class="section-heading fade-in">Subcontract. Behind your brand.</h2>
+      <div class="ag-how-grid">
+        <div class="ag-how-step fade-in">
+          <div class="ag-how-num">01</div>
+          <h3>You bring us in</h3>
+          <p>You own the client relationship. You introduce us when there&rsquo;s a positioning, messaging, or exit-readiness gap your team isn&rsquo;t built to solve in-house.</p>
+        </div>
+        <div class="ag-how-step fade-in">
+          <div class="ag-how-num">02</div>
+          <h3>We do the work</h3>
+          <p>We run the messaging and brand-positioning engagement &mdash; workshop, audit, repositioning, exit-ready, whatever fits the client. From a fresh perspective.</p>
+        </div>
+        <div class="ag-how-step fade-in">
+          <div class="ag-how-num">03</div>
+          <h3>You deliver it</h3>
+          <p>The deliverable is packaged how you want it. Your team presents. Or we co-present alongside. Or it&rsquo;s fully behind the scenes. Your call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY AGENCIES BRING US IN -->
+  <section class="ag-reasons">
+    <div class="container">
+      <span class="section-eyebrow">Why agencies bring us in</span>
+      <h2 class="section-heading fade-in">Three moments where Conversiv earns the call.</h2>
+      <div class="ag-reasons-grid">
+        <div class="ag-reason fade-in">
+          <div class="ag-reason-num">01</div>
+          <h3>A client outgrows their story</h3>
+          <p>Revenue scaled. Audience shifted. The positioning hasn&rsquo;t moved in three years and it&rsquo;s now leaving money on the table. Your team is great at execution &mdash; this needs strategy.</p>
+        </div>
+        <div class="ag-reason fade-in">
+          <div class="ag-reason-num">02</div>
+          <h3>A client is preparing to sell</h3>
+          <p>Buyers don&rsquo;t pay for what a business does. They pay for what it means. Exit positioning is a different muscle &mdash; the kind of work most ad agencies aren&rsquo;t resourced for.</p>
+        </div>
+        <div class="ag-reason fade-in">
+          <div class="ag-reason-num">03</div>
+          <h3>A client needs a workshop, not a brief</h3>
+          <p>Sometimes the right next step is a structured workshop with the client&rsquo;s leadership team, not another creative round. We run those, you take the output forward.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="ag-proof">
+    <div class="container">
+      <span class="ag-proof-label">Built by leaders from</span>
+      <div class="ag-proof-names">
+        <span>Microsoft</span>
+        <span>Cisco</span>
+        <span>Yum! Brands</span>
+        <span>LifeLock</span>
+        <span>Samuel Adams</span>
+        <span>Avnet</span>
+        <span>Sylvan</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-dark" id="contact">
+    <div class="container">
+      <h2>Bring Conversiv into your <em>next</em> conversation.</h2>
+      <p>Tell us about your agency and the kind of client work where you&rsquo;d like a niche specialist on the bench. We&rsquo;ll come back with a starting point.</p>
+      <div class="cta-dark-actions">
+        <a href="mailto:partners@conversiv.com" class="btn-amber">Start a partner conversation &rarr;</a>
+        <a href="/" class="btn-ghost-light">See the Exit Agency story</a>
+      </div>
+      <p class="cta-note">Subcontract &middot; Behind your brand &middot; You keep the client</p>
+    </div>
+  </section>
+</Site>

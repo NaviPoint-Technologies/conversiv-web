@@ -1,0 +1,153 @@
+---
+import Site from '../../layouts/Site.astro';
+---
+<Site
+  title="Messaging & Brand Workshop — Conversiv"
+  description="A structured messaging and brand-positioning workshop for companies that have outgrown their story. Conversiv sharpens positioning, audience, and message — with a deliverable you can use the next day."
+  active="messaging"
+>
+  <style is:inline slot="head">
+    .ms-when { background: var(--cream); padding: 8rem 0; border-bottom: 1px solid var(--cream3); }
+    .ms-when-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .ms-card { background: #fff; border: 1px solid var(--cream3); border-radius: 4px; padding: 2.75rem; display: flex; flex-direction: column; }
+    .ms-card-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.25rem; }
+    .ms-card-quote { font-family: var(--serif); font-style: italic; font-size: 1.25rem; line-height: 1.35; color: var(--ink); margin-bottom: 1.25rem; font-weight: 400; }
+    .ms-card p { font-size: 0.92rem; color: var(--gray); line-height: 1.7; font-weight: 300; flex-grow: 1; }
+
+    .ms-workshop { background: var(--cream2); padding: 8rem 0; border-bottom: 1px solid var(--cream3); }
+    .ms-workshop-inner { display: grid; grid-template-columns: 0.85fr 1fr; gap: 5rem; align-items: start; }
+    .ms-workshop-left h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); color: var(--ink); margin-bottom: 1.25rem; }
+    .ms-workshop-left h2 em { font-style: italic; color: var(--amber); }
+    .ms-workshop-left p { font-size: 1rem; color: var(--gray); line-height: 1.7; font-weight: 300; }
+    .ms-phases { background: #fff; border: 1px solid var(--cream3); border-radius: 4px; padding: 2.5rem; }
+    .ms-phase { padding: 1.5rem 0; border-bottom: 1px solid var(--cream3); display: flex; gap: 1.5rem; }
+    .ms-phase:last-child { border-bottom: none; }
+    .ms-phase:first-child { padding-top: 0; }
+    .ms-phase-num { font-family: var(--serif); font-size: 1.4rem; color: var(--amber); font-weight: 700; flex-shrink: 0; min-width: 2.5rem; }
+    .ms-phase-body strong { display: block; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.3rem; font-weight: 700; }
+    .ms-phase-body span { font-size: 0.88rem; color: var(--gray); line-height: 1.65; font-weight: 300; }
+
+    .ms-deliverable { background: var(--cream); padding: 8rem 0; border-bottom: 1px solid var(--cream3); }
+    .ms-deliverable-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+    .ms-deliverable h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); color: var(--ink); margin-bottom: 1.25rem; }
+    .ms-deliverable h2 em { font-style: italic; color: var(--amber); }
+    .ms-deliverable p { font-size: 1rem; color: var(--gray); line-height: 1.7; font-weight: 300; max-width: 620px; margin: 0 auto 2.5rem; }
+    .ms-deliverable-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: left; max-width: 720px; margin: 0 auto; }
+    .ms-deliverable-list li { list-style: none; padding: 1rem 1.25rem; background: var(--cream2); border: 1px solid var(--cream3); border-radius: 2px; font-size: 0.92rem; color: var(--ink2); display: flex; align-items: flex-start; gap: 0.65rem; }
+    .ms-deliverable-list li::before { content: '\2192'; color: var(--amber); font-weight: 700; flex-shrink: 0; }
+
+    @media (max-width: 960px) {
+      .ms-when-grid, .ms-workshop-inner, .ms-deliverable-list { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner fade-in">
+        <div class="page-hero-eyebrow">For companies</div>
+        <h1>Get your message <em>right.</em></h1>
+        <p class="page-hero-sub">
+          If your business has grown faster than your story has, your message is leaving money on the table. We sharpen your positioning, your audience, and the language that ties them together &mdash; in a structured workshop, with a deliverable you can use the next day.
+        </p>
+        <div class="page-hero-actions">
+          <a href="/start" class="btn-ink">Book your workshop &rarr;</a>
+          <a href="#what" class="btn-outline">See what&rsquo;s included</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHEN COMPANIES COME TO US -->
+  <section class="ms-when">
+    <div class="container">
+      <span class="section-eyebrow">When companies come to us</span>
+      <h2 class="section-heading fade-in">Three reasons to bring Conversiv in.</h2>
+      <div class="ms-when-grid">
+        <div class="ms-card fade-in">
+          <div class="ms-card-tag">Scenario 01</div>
+          <div class="ms-card-quote">&ldquo;We&rsquo;ve outgrown our story.&rdquo;</div>
+          <p>Revenue has scaled. The team has scaled. The market position you wrote four years ago is no longer the business you run today &mdash; and prospects can feel the gap.</p>
+        </div>
+        <div class="ms-card fade-in">
+          <div class="ms-card-tag">Scenario 02</div>
+          <div class="ms-card-quote">&ldquo;We sound like everyone else.&rdquo;</div>
+          <p>Same vertical, same competitors, same words on the website. Buyers can&rsquo;t tell you apart. Your sales team is fighting a positioning problem dressed up as a pricing problem.</p>
+        </div>
+        <div class="ms-card fade-in">
+          <div class="ms-card-tag">Scenario 03</div>
+          <div class="ms-card-quote">&ldquo;We&rsquo;re entering a new market.&rdquo;</div>
+          <p>New audience. New buyer. New context. The message that worked for the audience that got you here will not be the message that wins the next one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE WORKSHOP -->
+  <section class="ms-workshop" id="what">
+    <div class="container">
+      <div class="ms-workshop-inner">
+        <div class="ms-workshop-left fade-in">
+          <span class="section-eyebrow">The workshop</span>
+          <h2>A structured engagement, <em>not</em> a creative brief.</h2>
+          <p>The workshop is a short, focused sprint with your leadership team. We pre-work the inputs, run the sessions, and hand back a positioning system you can put in front of customers, hire on, and brief any partner with.</p>
+        </div>
+        <div class="ms-phases fade-in">
+          <div class="ms-phase">
+            <div class="ms-phase-num">01</div>
+            <div class="ms-phase-body">
+              <strong>Pre-work</strong>
+              <span>Audience definition. Competitive landscape. Existing message audit. Stakeholder interviews. We come in already knowing the territory.</span>
+            </div>
+          </div>
+          <div class="ms-phase">
+            <div class="ms-phase-num">02</div>
+            <div class="ms-phase-body">
+              <strong>Workshop sessions</strong>
+              <span>Working sessions with your leadership team. Positioning hypotheses, audience archetypes, message architecture, and the language tests that prove the work.</span>
+            </div>
+          </div>
+          <div class="ms-phase">
+            <div class="ms-phase-num">03</div>
+            <div class="ms-phase-body">
+              <strong>Deliverable + handoff</strong>
+              <span>A finished positioning document, audience map, and message architecture &mdash; plus a guide your existing agencies, in-house team, and partners can run with.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLE -->
+  <section class="ms-deliverable">
+    <div class="container">
+      <div class="ms-deliverable-inner fade-in">
+        <span class="section-eyebrow">The deliverable</span>
+        <h2>One playbook. <em>Every</em> surface.</h2>
+        <p>When the workshop is done, every customer-facing surface &mdash; website, deck, pitch, ads, email, sales conversation &mdash; can speak from the same playbook. No more retranslating your story for every channel.</p>
+        <ul class="ms-deliverable-list">
+          <li>Positioning document &mdash; the single source of truth</li>
+          <li>Audience map &mdash; who you&rsquo;re for, and who you&rsquo;re not</li>
+          <li>Message architecture &mdash; hierarchy, hooks, and proof</li>
+          <li>Go-to-market language &mdash; the words to put in front of buyers</li>
+          <li>Brand voice + tone guide</li>
+          <li>Handoff guide for partners and agencies</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-dark" id="contact">
+    <div class="container">
+      <h2>Get your message <em>right.</em></h2>
+      <p>Tell us about your business and where the message stopped keeping up. We&rsquo;ll come back with a workshop shape that fits.</p>
+      <div class="cta-dark-actions">
+        <a href="/start" class="btn-amber">Book your workshop &rarr;</a>
+        <a href="/" class="btn-ghost-light">See the Exit Agency story</a>
+      </div>
+      <p class="cta-note">Structured workshop &middot; Defined deliverable &middot; Built for leadership teams</p>
+    </div>
+  </section>
+</Site>
