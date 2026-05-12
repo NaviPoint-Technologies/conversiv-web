@@ -12,7 +12,7 @@ const productDesc = "OptiqOS connects every channel you run, every campaign you 
   <style is:inline slot="head">
     .pl-feature { background: var(--cream); padding: 8rem 0; border-bottom: 1px solid var(--cream3); }
     .pl-feature-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-    .pl-chip { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(241,138,0,0.08); border: 1px solid rgba(241,138,0,0.25); color: var(--amber); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; }
+    .pl-chip { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; border: 1px solid var(--blue); color: var(--blue); font-family: var(--font-nav); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 0; margin-bottom: 1.5rem; }
     .pl-feature h2 { font-size: clamp(1.9rem, 3vw, 2.8rem); color: var(--ink); margin-bottom: 1rem; }
     .pl-feature h2 em { font-style: italic; color: var(--amber); }
     .pl-sub { font-size: 0.92rem; color: var(--amber); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 1.25rem; }
@@ -31,9 +31,9 @@ const productDesc = "OptiqOS connects every channel you run, every campaign you 
     .sdi-label { font-size: 0.8rem; font-weight: 500; color: var(--ink2); }
     .sdi-value { font-family: var(--serif); font-size: 1.4rem; color: var(--amber); font-weight: 700; }
     .sdi-delta { font-size: 0.65rem; font-weight: 700; color: #15803D; background: rgba(34,197,94,0.1); padding: 0.18rem 0.55rem; border-radius: 100px; letter-spacing: 0.04em; }
-    .sdi-delta.warn { color: var(--amber); background: rgba(241,138,0,0.1); }
+    .sdi-delta.warn { color: var(--amber-rare); background: rgba(170,85,0,0.1); }
     .sdi-right { display: flex; align-items: center; gap: 0.5rem; }
-    .insight-light { margin-top: 1.25rem; background: rgba(241,138,0,0.08); border: 1px solid rgba(241,138,0,0.22); border-radius: 3px; padding: 0.95rem 1.15rem; font-size: 0.8rem; color: var(--ink2); line-height: 1.6; }
+    .insight-light { margin-top: 1.25rem; background: rgba(67,129,195,0.08); border-left: 3px solid var(--blue); padding: 0.95rem 1.15rem; font-size: 0.85rem; color: var(--ink); line-height: 1.6; }
     .insight-light strong { color: var(--amber); }
 
     .pl-problem { background: var(--cream2); padding: 7rem 0; border-bottom: 1px solid var(--cream3); }
@@ -54,13 +54,14 @@ const productDesc = "OptiqOS connects every channel you run, every campaign you 
     .pl-insight p { font-family: var(--serif); font-size: 1.05rem; line-height: 1.45; color: var(--ink); font-weight: 400; }
     .pl-insight strong { color: var(--amber); font-weight: 700; }
 
-    .pl-callout { background: var(--ink); padding: 7rem 0; color: rgba(247,246,242,0.85); }
+    .pl-callout { background: var(--black); padding: 7rem 0; color: rgba(255,255,255,0.85); }
     .pl-callout-inner { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: center; }
-    .pl-callout-eyebrow { color: var(--amber2); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 1.25rem; }
-    .pl-callout h2 { font-size: clamp(1.8rem, 2.8vw, 2.4rem); color: #fff; line-height: 1.15; font-weight: 700; }
-    .pl-callout h2 em { font-style: italic; color: var(--amber2); }
-    .pl-callout p { font-size: 0.98rem; line-height: 1.75; color: rgba(247,246,242,0.7); font-weight: 300; }
-    .pl-callout-cta { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; color: var(--amber2); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1.5px solid var(--amber2); padding-bottom: 2px; }
+    .pl-callout-eyebrow { color: var(--blue); font-family: var(--font-nav); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .pl-callout h2 { font-family: var(--serif); font-size: clamp(1.7rem, 2.6vw, 2.2rem); color: #fff; line-height: 1.2; font-weight: 300; }
+    .pl-callout h2 em { font-style: normal; color: var(--blue); }
+    .pl-callout p { font-size: 0.98rem; line-height: 1.75; color: rgba(255,255,255,0.7); font-weight: 400; }
+    .pl-callout-cta { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; color: var(--blue); font-family: var(--serif); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; border: 1.6px solid var(--blue); padding: 0.65rem 1.25rem; transition: background 0.2s, color 0.2s; }
+    .pl-callout-cta:hover { background: var(--blue); color: #fff; }
 
     .pl-pricing-note { background: var(--cream); padding: 4rem 0; border-bottom: 1px solid var(--cream3); text-align: center; }
     .pl-pricing-note span { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gray); }

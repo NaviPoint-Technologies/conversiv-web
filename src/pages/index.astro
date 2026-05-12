@@ -1,615 +1,455 @@
 ---
-const title = "Conversiv — The Exit Agency";
+import Site from '../layouts/Site.astro';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Conversiv — The Exit Agency</title>
-    <meta name="description" content="Get more for your business sooner. Conversiv helps owner-operators position their business for a max selling price — by connecting their message to their audiences and their operations." />
-    <link rel="icon" type="image/svg+xml" href="/conversiv-mark.svg" />
-    <link rel="apple-touch-icon" href="/conversiv-mark.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
-    <style is:inline>
-      /* ── Reset & Root ──────────────────────────────────────────────── */
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      :root {
-        /* Conversiv brand palette (matches live conversiv.com trade dress) */
-        --cream:   #F7F6F2;
-        --cream2:  #EFEDE6;
-        --cream3:  #DCD9CF;
-        --ink:     #1A2D45;       /* Conversiv navy */
-        --ink2:    #223655;       /* Conversiv navy 2 */
-        --amber:   #F18A00;       /* Conversiv orange (var name kept to avoid mass renames) */
-        --amber2:  #FF9E1B;       /* Conversiv orange bright */
-        --blue:    #4381C3;       /* Conversiv accent blue */
-        --gray:    #5A6478;
-        --gray2:   #8893A8;
-        --muted:   #C4CAD4;
-        --navy:    #1A2D45;
-        --navy2:   #142236;
-        --serif:   'Playfair Display', Georgia, serif;
-        --sans:    'Roboto', -apple-system, sans-serif;
-      }
-      html { scroll-behavior: smooth; }
-      body { font-family: var(--sans); background: var(--cream); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; font-weight: 400; }
-      h1, h2, h3 { font-family: var(--serif); line-height: 1.1; font-weight: 700; color: var(--ink); }
-      a { color: inherit; text-decoration: none; }
-      .container { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
+<Site
+  title="Conversiv — The Exit Agency"
+  description="Get more for your business sooner. Conversiv helps owner-operators position their business for a max selling price — by connecting their message to their audiences and their operations."
+  active="home"
+>
+  <style is:inline slot="head">
+    /* ── HERO (audit: light gray near-white #F5F5F5, Roboto H1, ghost CTAs) ── */
+    .hero { background: var(--light); padding: 6rem 0 5rem; text-align: center; border-bottom: 1px solid var(--light3); }
+    .hero-chip { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; border: 1px solid var(--blue); color: var(--blue); font-family: var(--font-nav); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2.5rem; }
+    .hero-chip::before { content: ''; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; }
+    h1.hero-headline { font-family: var(--serif); font-size: clamp(2.6rem, 6vw, 5.4rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; color: var(--blue); max-width: 980px; margin: 0 auto 2rem; }
+    .hero-emph { color: var(--navy); font-style: normal; font-weight: 400; }
+    .hero-sub { font-family: var(--sans); font-size: 1.05rem; font-weight: 400; color: var(--ink); max-width: 640px; margin: 0 auto 2.5rem; line-height: 1.7; }
+    .hero-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .magic-link-hint { display: block; font-size: 0.72rem; color: var(--gray2); letter-spacing: 0.02em; margin-top: 0.25rem; margin-bottom: 2.5rem; font-weight: 400; }
+    .magic-link-hint strong { color: var(--ink); font-weight: 600; }
+    .hero-proof { display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+    .hero-proof-label { font-family: var(--font-nav); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray2); }
+    .hero-proof-names { display: flex; gap: 0; }
+    .proof-name { font-family: var(--font-nav); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); padding: 0 1rem; border-right: 1px solid var(--light3); }
+    .proof-name:last-child { border-right: none; }
 
-      /* ── TOP BAR ─────────────────────────────────────────────────────── */
-      .top-bar { background: var(--amber); color: #fff; text-align: center; padding: 0.55rem 1rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.03em; }
-      .top-bar a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+    /* ── PROOF MARQUEE (already dark — pattern preserved) ── */
+    .proof-marquee { background: var(--black); overflow: hidden; padding: 1.15rem 0; }
+    .proof-track { display: flex; align-items: center; width: max-content; animation: marquee-proof 28s linear infinite; }
+    .proof-item { font-family: var(--font-nav); padding: 0 2rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); white-space: nowrap; }
+    .proof-dot { color: var(--blue); padding: 0 0.5rem; }
+    @keyframes marquee-proof { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-      /* ── NAV ─────────────────────────────────────────────────────────── */
-      nav { position: sticky; top: 0; z-index: 100; background: rgba(247,246,242,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--cream3); padding: 1.25rem 0; }
-      .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-      .nav-logo { display: inline-flex; align-items: baseline; gap: 0.4rem; font-family: var(--serif); font-size: 1.55rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
-      .nav-logo::after { content: ''; display: inline-block; width: 6px; height: 6px; background: var(--amber); border-radius: 50%; transform: translateY(-2px); }
-      .nav-links { display: flex; gap: 2.5rem; list-style: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray); }
-      .nav-links a:hover { color: var(--amber); transition: color 0.2s; }
-      .nav-cta { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--ink); padding: 0.65rem 1.5rem; border-radius: 2px; transition: background 0.2s, transform 0.15s; white-space: nowrap; }
-      .nav-cta:hover { background: var(--amber); transform: translateY(-1px); }
+    /* ── PILLAR (white) — Joe's "Get more for your business sooner" ── */
+    .pillar { background: var(--light2); padding: 7rem 0; border-bottom: 1px solid var(--light3); text-align: center; }
+    .pillar-inner { max-width: 760px; margin: 0 auto; }
+    .pillar-eyebrow { font-family: var(--font-nav); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.25rem; display: block; }
+    .pillar h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 3.6vw, 3.2rem); margin-bottom: 1.5rem; color: var(--ink); line-height: 1.15; }
+    .pillar h2 em { font-style: normal; color: var(--blue); }
+    .pillar p { font-size: 1.05rem; color: var(--ink); line-height: 1.7; font-weight: 400; }
+    .pillar-cta { margin-top: 2.5rem; }
 
-      /* ── HERO ─────────────────────────────────────────────────────────── */
-      .hero { background: var(--cream); padding: 7rem 0 6rem; text-align: center; border-bottom: 1px solid var(--cream3); }
-      .hero-chip { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(241,138,0,0.08); border: 1px solid rgba(241,138,0,0.25); color: var(--amber); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2.5rem; }
-      .hero-chip::before { content: ''; width: 6px; height: 6px; background: var(--amber); border-radius: 50%; }
-      h1.hero-headline {
-        font-size: clamp(3.4rem, 8vw, 7.4rem);
-        line-height: 1;
-        letter-spacing: -0.02em;
-        color: var(--ink);
-        max-width: 980px;
-        margin: 0 auto 2rem;
-        font-family: var(--serif);
-        font-weight: 700;
-      }
-      .hero-emph { color: var(--amber); font-style: italic; }
-      .hero-sub { font-size: 1.15rem; font-weight: 300; color: var(--gray); max-width: 640px; margin: 0 auto 3rem; line-height: 1.7; }
-      .hero-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
-      .btn-ink { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--ink); color: #fff; padding: 1rem 2rem; border-radius: 2px; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; }
-      .btn-ink:hover { background: var(--amber); transform: translateY(-2px); }
-      .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; border: 1.5px solid var(--ink); color: var(--ink); padding: 1rem 2rem; border-radius: 2px; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; transition: border-color 0.2s, background 0.2s, color 0.2s; }
-      .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
-      .magic-link-hint { display: block; font-size: 0.72rem; color: var(--gray2); letter-spacing: 0.02em; margin-top: 0.5rem; margin-bottom: 3rem; font-weight: 400; }
-      .magic-link-hint strong { color: var(--ink2); font-weight: 600; }
-      .hero-proof { display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
-      .hero-proof-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray2); }
-      .hero-proof-names { display: flex; gap: 0; }
-      .proof-name { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); padding: 0 1rem; border-right: 1px solid var(--cream3); }
-      .proof-name:last-child { border-right: none; }
+    /* ── AUTHORITY QUOTE (light gray) ── */
+    .authority-quote { background: var(--light); padding: 5rem 0; border-bottom: 1px solid var(--light3); }
+    .aq-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+    .aq-eyebrow { font-family: var(--font-nav); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+    .aq-eyebrow::before, .aq-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--blue); }
+    .aq-text { font-family: var(--serif); font-weight: 300; font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.35; color: var(--ink); font-style: italic; margin-bottom: 1.75rem; }
+    .aq-attr { display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem; padding-top: 1.5rem; border-top: 1px solid var(--light3); }
+    .aq-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); letter-spacing: 0.03em; }
+    .aq-role { font-size: 0.72rem; color: var(--gray); font-weight: 400; }
 
-      /* ── PROOF MARQUEE ───────────────────────────────────────────────── */
-      .proof-marquee { background: var(--ink); overflow: hidden; padding: 1.15rem 0; }
-      .proof-track { display: flex; align-items: center; width: max-content; animation: marquee-proof 28s linear infinite; }
-      .proof-item { padding: 0 2rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,246,242,0.55); white-space: nowrap; }
-      .proof-dot { color: rgba(241,138,0,0.7); padding: 0 0.5rem; }
-      @keyframes marquee-proof { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    /* ── EDITORIAL IMAGE BREAK (black, image) ── */
+    .editorial-break { position: relative; overflow: hidden; background: var(--black); border-bottom: 1px solid var(--black); }
+    .editorial-break img { width: 100%; height: 56vh; min-height: 440px; max-height: 700px; object-fit: cover; display: block; filter: grayscale(0.65) brightness(0.5) contrast(1.05); }
+    .editorial-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none; }
+    .editorial-overlay-inner { max-width: 1180px; margin: 0 auto; padding: 0 2rem 4rem; width: 100%; pointer-events: auto; }
+    .editorial-eyebrow { color: var(--blue); font-family: var(--font-nav); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+    .editorial-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--blue); }
+    .editorial-quote { font-family: var(--serif); font-weight: 300; font-size: clamp(1.5rem, 3vw, 2.6rem); line-height: 1.18; color: #fff; max-width: 780px; letter-spacing: -0.005em; }
+    .editorial-quote em { font-style: normal; color: var(--blue); font-weight: 400; }
+    .editorial-attr { font-family: var(--font-nav); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 1.75rem; }
 
-      /* ── SECTION 2 — Get more for your business sooner ─────────────── */
-      .pillar { background: var(--cream); padding: 8rem 0; border-bottom: 1px solid var(--cream3); text-align: center; }
-      .pillar-inner { max-width: 760px; margin: 0 auto; }
-      .pillar-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.25rem; display: block; }
-      .pillar h2 { font-size: clamp(2.2rem, 4vw, 3.6rem); margin-bottom: 1.75rem; }
-      .pillar h2 em { font-style: italic; color: var(--amber); }
-      .pillar p { font-size: 1.1rem; color: var(--gray); line-height: 1.7; font-weight: 300; }
-      .pillar-cta { margin-top: 2.5rem; }
+    /* ── WHY CONNECT WITH CONVERSIV (light gray) ── */
+    .why-now { background: var(--light); padding: 7rem 0; border-bottom: 1px solid var(--light3); }
+    .wn-header { text-align: center; margin-bottom: 4rem; }
+    .wn-eyebrow { font-family: var(--font-nav); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 1rem; display: block; }
+    .wn-heading { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 3.6vw, 3rem); color: var(--ink); line-height: 1.15; }
+    .wn-heading em { font-style: normal; color: var(--blue); }
+    .wn-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; max-width: 880px; margin: 0 auto; }
+    .wn-stat { text-align: center; padding: 0 1rem; position: relative; }
+    .wn-stat:not(:last-child)::after { content: ''; position: absolute; right: -1.5rem; top: 1rem; bottom: 1rem; width: 1px; background: var(--light3); }
+    .wn-stat-num { font-family: var(--serif); font-weight: 300; font-size: clamp(3rem, 5.5vw, 5rem); color: var(--blue); line-height: 1; margin-bottom: 1rem; }
+    .wn-stat-label { font-size: 1rem; color: var(--ink); line-height: 1.55; max-width: 280px; margin: 0 auto; font-weight: 400; }
 
-      /* ── AUTHORITY QUOTE ─────────────────────────────────────────────── */
-      .authority-quote { background: var(--cream2); padding: 6rem 0; border-bottom: 1px solid var(--cream3); }
-      .aq-inner { max-width: 760px; margin: 0 auto; text-align: center; }
-      .aq-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.75rem; display: inline-flex; align-items: center; gap: 0.6rem; }
-      .aq-eyebrow::before, .aq-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--amber); }
-      .aq-text { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.3; color: var(--ink); font-style: italic; margin-bottom: 1.75rem; font-weight: 400; }
-      .aq-attr { display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem; padding-top: 1.5rem; border-top: 1px solid var(--cream3); }
-      .aq-name { font-size: 0.78rem; font-weight: 600; color: var(--ink); letter-spacing: 0.04em; }
-      .aq-role { font-size: 0.72rem; color: var(--gray); font-weight: 300; }
+    /* ── PROGRAMS (BLACK section per audit "feature sections solid black") ── */
+    .programs { background: var(--black); padding: 7rem 0; }
+    .programs .section-eyebrow { color: var(--blue); font-family: var(--font-nav); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.85rem; display: block; }
+    .programs .section-heading { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 3.6vw, 3rem); color: #fff; margin-bottom: 3.5rem; max-width: 640px; line-height: 1.15; }
+    .programs .section-heading em { font-style: normal; color: var(--blue); }
+    .programs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .prog-card { background: transparent; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.15); transition: border-color 0.25s, background 0.25s; display: flex; flex-direction: column; }
+    .prog-card:hover { border-color: var(--blue); background: rgba(67,129,195,0.05); }
+    .prog-num { font-family: var(--serif); font-weight: 300; font-size: 2.6rem; color: var(--blue); line-height: 1; margin-bottom: 1rem; opacity: 0.7; }
+    .prog-card h3 { font-family: var(--sans); font-weight: 600; font-size: 1.8rem; color: #fff; margin-bottom: 0.4rem; }
+    .prog-sub { font-family: var(--font-nav); font-size: 0.78rem; color: var(--blue); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .prog-card p { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; font-weight: 400; margin-bottom: 1.75rem; }
+    .prog-features { list-style: none; display: flex; flex-direction: column; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.12); }
+    .prog-features li { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.7rem 0; font-size: 0.9rem; color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .prog-features li::before { content: '\2192'; color: var(--blue); flex-shrink: 0; margin-top: 0.15rem; font-weight: 600; }
+    .prog-cta { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 2rem; font-family: var(--serif); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--blue); border: 1.6px solid var(--blue); padding: 0.65rem 1.25rem; align-self: flex-start; transition: background 0.2s, color 0.2s; }
+    .prog-cta:hover { background: var(--blue); color: #fff; }
 
-      /* ── EDITORIAL IMAGE BREAK ──────────────────────────────────────── */
-      .editorial-break { position: relative; overflow: hidden; background: var(--ink); border-bottom: 1px solid var(--cream3); }
-      .editorial-break img { width: 100%; height: 62vh; min-height: 460px; max-height: 720px; object-fit: cover; display: block; filter: grayscale(0.55) brightness(0.55) contrast(1.05); }
-      .editorial-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none; }
-      .editorial-overlay-inner { max-width: 1180px; margin: 0 auto; padding: 0 2rem 4.5rem; width: 100%; pointer-events: auto; }
-      .editorial-eyebrow { color: var(--amber2); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.6rem; }
-      .editorial-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--amber2); }
-      .editorial-quote { font-family: var(--serif); font-size: clamp(1.7rem, 3.4vw, 2.8rem); line-height: 1.18; color: #fff; max-width: 780px; font-weight: 400; letter-spacing: -0.01em; }
-      .editorial-quote em { font-style: italic; color: var(--amber2); }
-      .editorial-attr { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(247,246,242,0.6); margin-top: 1.75rem; }
+    /* ── AGENTEXIT / OPTIQOS section (white) ── */
+    .optiqos { background: var(--light2); padding: 7rem 0; border-bottom: 1px solid var(--light3); }
+    .optiqos-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .optiqos-chip { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; border: 1px solid var(--blue); color: var(--blue); font-family: var(--font-nav); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 0; margin-bottom: 1.5rem; }
+    .optiqos h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(1.9rem, 3vw, 2.8rem); color: var(--ink); margin-bottom: 0.6rem; line-height: 1.15; }
+    .optiqos h2 em { font-style: normal; color: var(--blue); }
+    .optiqos-sub { font-family: var(--font-nav); font-size: 0.85rem; color: var(--blue); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .optiqos p { font-size: 0.95rem; color: var(--ink); line-height: 1.8; font-weight: 400; margin-bottom: 1.1rem; }
+    .feature-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; border-top: 1.5px solid var(--light3); padding-top: 1.25rem; }
+    .feature-list li { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--light3); font-size: 0.9rem; }
+    .feature-list li:last-child { border-bottom: none; }
+    .feat-num { font-family: var(--serif); font-weight: 300; font-size: 1.3rem; color: var(--blue); width: 1.6rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .feat-text strong { display: block; font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.25rem; }
+    .feat-text span { font-size: 0.85rem; color: var(--gray); font-weight: 400; line-height: 1.55; }
+    .optiqos-visual { position: sticky; top: 6rem; }
+    .stat-display { background: var(--light); border: 1px solid var(--light3); padding: 2.25rem; }
+    .stat-display-head { font-family: var(--font-nav); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-bottom: 1.5rem; }
+    .stat-display-items { display: flex; flex-direction: column; gap: 0.85rem; }
+    .sdi { display: flex; align-items: center; justify-content: space-between; padding: 0.95rem 1.2rem; background: #fff; border: 1px solid var(--light3); }
+    .sdi-label { font-size: 0.8rem; font-weight: 500; color: var(--ink); }
+    .sdi-value { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; color: var(--blue); }
+    .sdi-delta { font-family: var(--font-nav); font-size: 0.65rem; font-weight: 600; color: #1B7332; background: rgba(34,197,94,0.1); padding: 0.18rem 0.55rem; border-radius: 100px; letter-spacing: 0.04em; }
+    .sdi-delta.warn { color: var(--amber-rare); background: rgba(170,85,0,0.1); }
+    .sdi-right { display: flex; align-items: center; gap: 0.5rem; }
+    .insight-light { margin-top: 1.25rem; background: rgba(67,129,195,0.08); border-left: 3px solid var(--blue); padding: 0.95rem 1.15rem; font-size: 0.85rem; color: var(--ink); line-height: 1.6; }
+    .insight-light strong { color: var(--blue); }
 
-      /* ── PROGRAMS ─────────────────────────────────────────────────────── */
-      .programs { background: var(--cream2); padding: 8rem 0; border-top: 1px solid var(--cream3); border-bottom: 1px solid var(--cream3); }
-      .section-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem; display: block; }
-      .section-heading { font-size: clamp(1.9rem, 3.2vw, 2.8rem); color: var(--ink); margin-bottom: 3.5rem; max-width: 640px; }
-      .section-heading em { font-style: italic; color: var(--amber); }
-      .programs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--cream3); border: 1px solid var(--cream3); }
-      .prog-card { background: var(--cream2); padding: 3.5rem; transition: background 0.25s; display: flex; flex-direction: column; }
-      .prog-card:hover { background: #fff; }
-      .prog-num { font-family: var(--serif); font-size: 3rem; color: var(--amber); line-height: 1; margin-bottom: 1rem; opacity: 0.5; font-weight: 700; }
-      .prog-card h3 { font-size: 2.2rem; color: var(--ink); margin-bottom: 0.35rem; font-weight: 700; }
-      .prog-sub { font-size: 0.82rem; color: var(--amber); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.25rem; }
-      .prog-card p { font-size: 0.95rem; color: var(--gray); line-height: 1.85; font-weight: 300; margin-bottom: 1.75rem; }
-      .prog-features { list-style: none; display: flex; flex-direction: column; gap: 0; padding-top: 0.5rem; }
-      .prog-features li { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.6rem 0; font-size: 0.9rem; color: var(--ink2); border-bottom: 1px solid rgba(26,45,69,0.06); }
-      .prog-features li::before { content: '\2192'; color: var(--amber); flex-shrink: 0; margin-top: 0.15rem; font-weight: 600; }
-      .prog-cta { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 2rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); border-bottom: 1.5px solid var(--ink); padding-bottom: 2px; align-self: flex-start; transition: color 0.2s, border-color 0.2s; }
-      .prog-cta:hover { color: var(--amber); border-color: var(--amber); }
+    /* ── QUOTES (light gray) ── */
+    .quotes { background: var(--light); padding: 6.5rem 0; border-top: 1px solid var(--light3); border-bottom: 1px solid var(--light3); }
+    .quotes .section-eyebrow { color: var(--blue); }
+    .quotes .section-heading { color: var(--ink); }
+    .quotes .section-heading em { color: var(--blue); }
+    .quotes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .quote-card { background: #fff; border: 1px solid var(--light3); padding: 2.5rem; }
+    .q-mark { font-family: var(--serif); font-weight: 300; font-size: 4rem; line-height: 0.6; color: var(--blue); opacity: 0.45; margin-bottom: 1.25rem; }
+    .q-text { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1rem; color: var(--ink); line-height: 1.65; margin-bottom: 1.5rem; }
+    .q-outcome { font-family: var(--font-nav); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 1.25rem; }
+    .q-outcome::before { content: '\2192'; }
+    .q-attr { display: flex; align-items: center; gap: 0.85rem; border-top: 1px solid var(--light3); padding-top: 1rem; }
+    .q-headshot { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex-shrink: 0; filter: grayscale(0.45); border: 1px solid var(--light3); background: var(--light3); }
+    .q-meta { flex: 1; min-width: 0; }
+    .q-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+    .q-role { font-size: 0.72rem; color: var(--gray); font-weight: 400; margin-top: 0.1rem; }
 
-      /* ── AGENT EXIT (formerly OPTIQOS — reframed as agency capability, not financial product) */
-      .optiqos { background: var(--cream); padding: 8rem 0; border-bottom: 1px solid var(--cream3); }
-      .optiqos-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-      .optiqos-chip { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(241,138,0,0.08); border: 1px solid rgba(241,138,0,0.25); color: var(--amber); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 2px; margin-bottom: 1.5rem; }
-      .optiqos h2 { font-size: clamp(1.9rem, 3vw, 2.8rem); color: var(--ink); margin-bottom: 0.5rem; }
-      .optiqos h2 em { font-style: italic; color: var(--amber); }
-      .optiqos-sub { font-size: 0.92rem; color: var(--amber); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 1.25rem; }
-      .optiqos p { font-size: 0.95rem; color: var(--gray); line-height: 1.85; font-weight: 300; margin-bottom: 1.1rem; }
-      .feature-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 0; border-top: 1.5px solid var(--cream3); padding-top: 1.25rem; }
-      .feature-list li { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--cream3); font-size: 0.9rem; }
-      .feature-list li:last-child { border-bottom: none; }
-      .feat-num { font-family: var(--serif); font-size: 1.1rem; color: var(--amber); width: 1.5rem; flex-shrink: 0; margin-top: 0.05rem; font-weight: 700; }
-      .feat-text strong { display: block; font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; letter-spacing: 0.01em; }
-      .feat-text span { font-size: 0.85rem; color: var(--gray); font-weight: 300; line-height: 1.55; }
-      .optiqos-visual { position: sticky; top: 6rem; }
-      .stat-display { background: var(--cream2); border: 1px solid var(--cream3); border-radius: 4px; padding: 2.5rem; }
-      .stat-display-head { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); margin-bottom: 1.5rem; }
-      .stat-display-items { display: flex; flex-direction: column; gap: 1rem; }
-      .sdi { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: #fff; border: 1px solid var(--cream3); border-radius: 2px; }
-      .sdi-label { font-size: 0.8rem; font-weight: 500; color: var(--ink2); }
-      .sdi-value { font-family: var(--serif); font-size: 1.4rem; color: var(--amber); font-weight: 700; }
-      .sdi-delta { font-size: 0.65rem; font-weight: 700; color: #15803D; background: rgba(34,197,94,0.1); padding: 0.18rem 0.55rem; border-radius: 100px; letter-spacing: 0.04em; }
-      .sdi-delta.warn { color: var(--amber); background: rgba(241,138,0,0.1); }
-      .sdi-right { display: flex; align-items: center; gap: 0.5rem; }
-      .insight-light { margin-top: 1.25rem; background: rgba(241,138,0,0.08); border: 1px solid rgba(241,138,0,0.22); border-radius: 3px; padding: 0.95rem 1.15rem; font-size: 0.8rem; color: var(--ink2); line-height: 1.6; }
-      .insight-light strong { color: var(--amber); }
+    /* ── PROCESS (white) ── */
+    .process { background: var(--light2); padding: 7rem 0; border-bottom: 1px solid var(--light3); }
+    .process .section-eyebrow { color: var(--blue); }
+    .process .section-heading { color: var(--ink); }
+    .process .section-heading em { color: var(--blue); }
+    .steps-light { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; }
+    .step-l { position: relative; }
+    .step-l-num { font-family: var(--serif); font-weight: 300; font-size: 2.6rem; color: var(--blue); opacity: 0.4; line-height: 1; margin-bottom: 0.85rem; }
+    .step-l h3 { font-family: var(--sans); font-size: 1.1rem; color: var(--ink); margin-bottom: 0.7rem; font-weight: 600; letter-spacing: -0.005em; }
+    .step-l p { font-size: 0.92rem; color: var(--gray); line-height: 1.75; font-weight: 400; }
 
-      /* ── QUOTES ───────────────────────────────────────────────────────── */
-      .quotes { background: var(--cream2); padding: 7rem 0; border-top: 1px solid var(--cream3); border-bottom: 1px solid var(--cream3); }
-      .quotes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--cream3); border: 1px solid var(--cream3); }
-      .quote-card { background: var(--cream2); padding: 3rem 2.5rem; }
-      .q-mark { font-family: var(--serif); font-size: 4rem; line-height: 0.6; color: var(--amber); opacity: 0.4; margin-bottom: 1.25rem; font-weight: 700; }
-      .q-text { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--ink2); line-height: 1.7; margin-bottom: 1.5rem; font-weight: 400; }
-      .q-outcome { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 1.25rem; }
-      .q-outcome::before { content: '\2192'; }
-      .q-attr { display: flex; align-items: center; gap: 0.85rem; border-top: 1px solid var(--cream3); padding-top: 1rem; }
-      .q-headshot { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex-shrink: 0; filter: grayscale(0.45); border: 1px solid var(--cream3); background: var(--cream3); }
-      .q-meta { flex: 1; min-width: 0; }
-      .q-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
-      .q-role { font-size: 0.72rem; color: var(--gray); font-weight: 300; margin-top: 0.1rem; }
+    /* ── Responsive ──────────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .optiqos-inner, .programs-grid, .steps-light, .quotes-grid, .wn-stats { grid-template-columns: 1fr; }
+      .wn-stat:not(:last-child)::after { display: none; }
+      .proof-name { display: none; }
+      .optiqos-visual { position: static; }
+    }
+  </style>
 
-      /* ── PROCESS ─────────────────────────────────────────────────────── */
-      .process { background: var(--cream); padding: 8rem 0; border-bottom: 1px solid var(--cream3); }
-      .steps-light { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; }
-      .step-l { position: relative; }
-      .step-l-num { font-family: var(--serif); font-size: 3rem; color: var(--amber); opacity: 0.25; line-height: 1; margin-bottom: 0.75rem; font-weight: 700; }
-      .step-l h3 { font-size: 1.15rem; color: var(--ink); margin-bottom: 0.7rem; font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em; }
-      .step-l p { font-size: 0.9rem; color: var(--gray); line-height: 1.8; font-weight: 300; }
-
-      /* ── WHY CONNECT WITH CONVERSIV (stat band — Joe's section 3) ── */
-      .why-now { background: var(--cream2); padding: 8rem 0; border-bottom: 1px solid var(--cream3); }
-      .wn-header { text-align: center; margin-bottom: 5rem; }
-      .wn-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; display: block; }
-      .wn-heading { font-size: clamp(2.2rem, 4vw, 3.4rem); color: var(--ink); }
-      .wn-heading em { font-style: italic; color: var(--amber); }
-      .wn-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; max-width: 880px; margin: 0 auto; }
-      .wn-stat { text-align: center; padding: 0 1rem; position: relative; }
-      .wn-stat:not(:last-child)::after { content: ''; position: absolute; right: -1.5rem; top: 1rem; bottom: 1rem; width: 1px; background: var(--cream3); }
-      .wn-stat-num { font-family: var(--serif); font-size: clamp(3.5rem, 6vw, 5.5rem); color: var(--amber); line-height: 0.95; margin-bottom: 1.25rem; font-weight: 700; }
-      .wn-stat-label { font-size: 1rem; color: var(--ink2); line-height: 1.55; max-width: 280px; margin: 0 auto; font-weight: 300; }
-      .wn-source { text-align: center; margin-top: 4rem; font-size: 0.72rem; color: var(--gray2); letter-spacing: 0.04em; }
-
-      /* ── CTA (DARK INVERSION) ─────────────────────────────────────────── */
-      .cta-dark { background: var(--navy2); padding: 8rem 0; text-align: center; }
-      .cta-dark h2 { font-size: clamp(2.5rem, 5vw, 4.2rem); color: #fff; max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.05; font-weight: 700; }
-      .cta-dark h2 em { font-style: italic; color: var(--amber2); }
-      .cta-dark p { font-size: 1rem; color: rgba(247,246,242,0.65); max-width: 480px; margin: 0 auto 2.5rem; font-weight: 300; line-height: 1.75; }
-      .cta-dark-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-      .btn-amber { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--amber); color: #fff; padding: 1rem 2rem; border-radius: 2px; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; }
-      .btn-amber:hover { background: var(--amber2); transform: translateY(-2px); }
-      .btn-ghost-light { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(247,246,242,0.3); color: rgba(247,246,242,0.8); padding: 1rem 2rem; border-radius: 2px; font-size: 0.875rem; font-weight: 500; transition: border-color 0.2s, color 0.2s; }
-      .btn-ghost-light:hover { border-color: var(--amber2); color: #fff; }
-      .cta-note { margin-top: 1.75rem; font-size: 0.75rem; color: rgba(247,246,242,0.45); letter-spacing: 0.07em; }
-
-      /* ── FOOTER ──────────────────────────────────────────────────────── */
-      footer { background: var(--ink); padding: 4rem 0 3rem; color: rgba(247,246,242,0.7); }
-      .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 3rem; margin-bottom: 3rem; }
-      .footer-brand-logo { font-family: var(--serif); font-size: 1.55rem; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
-      .footer-brand-logo::after { content: ''; display: inline-block; width: 6px; height: 6px; background: var(--amber); border-radius: 50%; margin-left: 0.4rem; transform: translateY(-4px); }
-      .footer-brand-tag { font-size: 0.68rem; color: var(--amber2); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 0.5rem; font-weight: 600; }
-      .footer-brand-desc { font-size: 0.85rem; color: rgba(247,246,242,0.6); line-height: 1.7; font-weight: 300; margin-top: 0.85rem; max-width: 260px; }
-      .footer-col-head { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber2); margin-bottom: 1.1rem; }
-      .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-      .footer-links-list a { font-size: 0.85rem; color: rgba(247,246,242,0.7); transition: color 0.2s; }
-      .footer-links-list a:hover { color: var(--amber2); }
-      .footer-bar { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(247,246,242,0.12); padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-      .footer-copy { font-size: 0.72rem; color: rgba(247,246,242,0.45); }
-
-      /* ── Fade-in ─────────────────────────────────────────────────────── */
-      .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-      .fade-in.visible { opacity: 1; transform: none; }
-
-      /* ── Responsive ──────────────────────────────────────────────────── */
-      @media (max-width: 960px) {
-        .optiqos-inner, .programs-grid, .steps-light, .quotes-grid, .wn-stats { grid-template-columns: 1fr; }
-        .wn-stat:not(:last-child)::after { display: none; }
-        .nav-links, .nav-cta { display: none; }
-        .proof-name { display: none; }
-        .footer-inner { grid-template-columns: 1fr 1fr; }
-        .optiqos-visual { position: static; }
-      }
-    </style>
-  </head>
-  <body>
-
-    <!-- TOP BAR -->
-    <div class="top-bar">
-      Get your free exit audit in 15 minutes. <a href="/start">Start now</a>
-    </div>
-
-    <!-- NAV -->
-    <nav>
-      <div class="container">
-        <div class="nav-inner">
-          <a href="/" class="nav-logo">Conversiv</a>
-          <ul class="nav-links">
-            <li><a href="/" class="active">Exit Agency</a></li>
-            <li><a href="/services/messaging">Messaging</a></li>
-            <li><a href="/agencies">For Agencies</a></li>
-            <li><a href="/optiqos">OptiqOS</a></li>
-          </ul>
-          <a href="/start" class="nav-cta">Free exit audit</a>
+  <!-- HERO (Joe 2026-05-05 copy) -->
+  <section class="hero" id="top">
+    <div class="container">
+      <div class="hero-chip">The Exit Agency for Owner-Operators</div>
+      <h1 class="hero-headline">
+        Max your <span class="hero-emph">exit.</span>
+      </h1>
+      <p class="hero-sub fade-in">
+        You get paid to work your business, but are you ready to get paid not to? At Conversiv, we&rsquo;re here to get you there. We help you position your business for a max selling price.
+      </p>
+      <div class="hero-actions fade-in">
+        <a href="/start" class="btn-ink">Free exit audit &rarr;</a>
+        <a href="/demo" class="btn-outline">Book your demo</a>
+      </div>
+      <p class="magic-link-hint fade-in"><strong>No password required.</strong> We&rsquo;ll send a magic link to your inbox.</p>
+      <div class="hero-proof fade-in">
+        <span class="hero-proof-label">Built by leaders from</span>
+        <div class="hero-proof-names">
+          <span class="proof-name">Microsoft</span>
+          <span class="proof-name">Cisco</span>
+          <span class="proof-name">Yum! Brands</span>
+          <span class="proof-name">LifeLock</span>
+          <span class="proof-name">Samuel Adams</span>
         </div>
       </div>
-    </nav>
+    </div>
+  </section>
 
-    <!-- HERO (Joe 2026-05-05 copy: "Max your exit" + sub) -->
-    <section class="hero" id="top">
-      <div class="container">
-        <div class="hero-chip">The Exit Agency for Owner-Operators</div>
-        <h1 class="hero-headline" id="hero-headline">
-          Max your <span class="hero-emph">exit.</span>
-        </h1>
-        <p class="hero-sub fade-in">
-          You get paid to work your business, but are you ready to get paid not to? At Conversiv, we&rsquo;re here to get you there. We help you position your business for a max selling price.
-        </p>
-        <div class="hero-actions fade-in">
+  <!-- PROOF MARQUEE (black band) -->
+  <div class="proof-marquee">
+    <div class="proof-track">
+      <span class="proof-item">Microsoft <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Cisco <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Yum! Brands <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">LifeLock <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Samuel Adams <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Avnet <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Sylvan <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">The Exit Agency <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Get more sooner <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Microsoft <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Cisco <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Yum! Brands <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">LifeLock <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Samuel Adams <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Avnet <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Sylvan <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">The Exit Agency <span class="proof-dot">&bull;</span></span>
+      <span class="proof-item">Get more sooner <span class="proof-dot">&bull;</span></span>
+    </div>
+  </div>
+
+  <!-- PILLAR (white) — Joe's section 2 verbatim -->
+  <section class="pillar">
+    <div class="container">
+      <div class="pillar-inner fade-in">
+        <span class="pillar-eyebrow">The Conversiv pillar</span>
+        <h2>Get more for your business <em>sooner.</em></h2>
+        <p>How? By using smarter strategy and technology to better connect you to your audiences and your operations. This allows you to optimize your revenue, and minimize wasted time, effort and money. We&rsquo;ll show you how.</p>
+        <div class="pillar-cta">
           <a href="/start" class="btn-ink">Free exit audit &rarr;</a>
-          <a href="/demo" class="btn-outline">Book your demo</a>
         </div>
-        <p class="magic-link-hint fade-in"><strong>No password required.</strong> We&rsquo;ll send a magic link to your inbox.</p>
-        <div class="hero-proof fade-in">
-          <span class="hero-proof-label">Built by leaders from</span>
-          <div class="hero-proof-names">
-            <span class="proof-name">Microsoft</span>
-            <span class="proof-name">Cisco</span>
-            <span class="proof-name">Yum! Brands</span>
-            <span class="proof-name">LifeLock</span>
-            <span class="proof-name">Samuel Adams</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROOF MARQUEE -->
-    <div class="proof-marquee">
-      <div class="proof-track">
-        <span class="proof-item">Microsoft <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Cisco <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Yum! Brands <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">LifeLock <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Samuel Adams <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Avnet <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Sylvan <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">The Exit Agency <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Get more sooner <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Microsoft <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Cisco <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Yum! Brands <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">LifeLock <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Samuel Adams <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Avnet <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Sylvan <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">The Exit Agency <span class="proof-dot">&bull;</span></span>
-        <span class="proof-item">Get more sooner <span class="proof-dot">&bull;</span></span>
       </div>
     </div>
+  </section>
 
-    <!-- SECTION 2 — "Get more for your business sooner" (Joe 2026-05-05 copy verbatim) -->
-    <section class="pillar">
-      <div class="container">
-        <div class="pillar-inner fade-in">
-          <span class="pillar-eyebrow">The Conversiv pillar</span>
-          <h2>Get more for your business <em>sooner.</em></h2>
-          <p>How? By using smarter strategy and technology to better connect you to your audiences and your operations. This allows you to optimize your revenue, and minimize wasted time, effort and money. We&rsquo;ll show you how.</p>
-          <div class="pillar-cta">
-            <a href="/start" class="btn-ink">Free exit audit &rarr;</a>
-          </div>
+  <!-- AUTHORITY QUOTE (light gray) -->
+  <section class="authority-quote">
+    <div class="container">
+      <div class="aq-inner fade-in">
+        <span class="aq-eyebrow">From the field</span>
+        <blockquote class="aq-text">
+          &ldquo;The number one driver of price variance at the table isn&rsquo;t EBITDA. It&rsquo;s the story.&rdquo;
+        </blockquote>
+        <div class="aq-attr">
+          <div class="aq-name">Sell-side M&amp;A advisor</div>
+          <div class="aq-role">Lower middle market, $5M to $50M deals</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- AUTHORITY QUOTE -->
-    <section class="authority-quote">
-      <div class="container">
-        <div class="aq-inner fade-in">
-          <span class="aq-eyebrow">From the field</span>
-          <blockquote class="aq-text">
-            &ldquo;The number one driver of price variance at the table isn&rsquo;t EBITDA. It&rsquo;s the story.&rdquo;
-          </blockquote>
-          <div class="aq-attr">
-            <div class="aq-name">Sell-side M&amp;A advisor</div>
-            <div class="aq-role">Lower middle market, $5M to $50M deals</div>
-          </div>
+  <!-- EDITORIAL IMAGE BREAK (black + photo) -->
+  <section class="editorial-break">
+    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1800&q=85&auto=format&fit=crop" alt="Owners and operators in conversation" />
+    <div class="editorial-overlay">
+      <div class="editorial-overlay-inner">
+        <div class="editorial-eyebrow">For owner-operators</div>
+        <p class="editorial-quote">You built it from nothing.<br />You should get every dollar it&rsquo;s <em>worth.</em></p>
+        <div class="editorial-attr">Conversiv founding principle</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CONNECT WITH CONVERSIV (light gray) — Joe's section 3 -->
+  <section class="why-now" id="why">
+    <div class="container">
+      <div class="wn-header fade-in">
+        <span class="wn-eyebrow">Why connect with Conversiv</span>
+        <h2 class="wn-heading">The clock is <em>real.</em></h2>
+      </div>
+      <div class="wn-stats">
+        <div class="wn-stat fade-in">
+          <div class="wn-stat-num">70%</div>
+          <div class="wn-stat-label">of small businesses listed for sale don&rsquo;t close</div>
+        </div>
+        <div class="wn-stat fade-in">
+          <div class="wn-stat-num">75%</div>
+          <div class="wn-stat-label">of owners who do sell regret it within 12 months</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- EDITORIAL IMAGE BREAK -->
-    <section class="editorial-break">
-      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1800&q=85&auto=format&fit=crop" alt="Owners and operators in conversation" />
-      <div class="editorial-overlay">
-        <div class="editorial-overlay-inner">
-          <div class="editorial-eyebrow">For owner-operators</div>
-          <p class="editorial-quote">You built it from nothing.<br />You should get every dollar it&rsquo;s <em>worth.</em></p>
-          <div class="editorial-attr">Conversiv founding principle</div>
+  <!-- PROGRAMS (BLACK — audit "feature sections solid black") -->
+  <section class="programs" id="programs">
+    <div class="container">
+      <span class="section-eyebrow">How we work</span>
+      <h2 class="section-heading fade-in">Two ways to work with us.</h2>
+      <div class="programs-grid">
+        <div class="prog-card fade-in">
+          <div class="prog-num">01</div>
+          <h3>Accelerate</h3>
+          <p class="prog-sub">For owners 12 to 36 months from selling</p>
+          <p>You know you&rsquo;ll sell. It&rsquo;s just not next year. Accelerate sharpens how your business shows up to a buyer, plugs into your numbers, and tells you exactly what to fix to grow your multiple. So when you&rsquo;re ready, you&rsquo;re ready.</p>
+          <ul class="prog-features">
+            <li>Exit Message Audit</li>
+            <li>Multiple Map (your roadmap)</li>
+            <li>AgentExit business view</li>
+            <li>Quarterly Multiple Reviews</li>
+            <li>A team that works on your timeline</li>
+          </ul>
+          <a href="/demo" class="prog-cta">Book a conversation &rarr;</a>
+        </div>
+        <div class="prog-card fade-in">
+          <div class="prog-num">02</div>
+          <h3>Elevate</h3>
+          <p class="prog-sub">For owners 6 months or less from selling</p>
+          <p>You&rsquo;re going to market. Elevate writes the story buyers want to hear, organizes the operations they want to see, and builds the data room they&rsquo;ll ask for. So you walk in ready and walk out at the top of your range.</p>
+          <ul class="prog-features">
+            <li>Buyer Story Sprint</li>
+            <li>Buyer&rsquo;s One-Pager (the brief acquirers ask for)</li>
+            <li>Operations playbook</li>
+            <li>AgentExit exit-mode view</li>
+            <li>Data-room support through close</li>
+          </ul>
+          <a href="/demo" class="prog-cta">Book a conversation &rarr;</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- WHY CONNECT WITH CONVERSIV (Joe 2026-05-05 stat band) -->
-    <section class="why-now" id="why">
-      <div class="container">
-        <div class="wn-header fade-in">
-          <span class="wn-eyebrow">Why connect with Conversiv</span>
-          <h2 class="wn-heading">The clock is <em>real.</em></h2>
+  <!-- AGENTEXIT / OPTIQOS section (white) — reframed agency capability -->
+  <section class="optiqos" id="optiqos">
+    <div class="container">
+      <div class="optiqos-inner">
+        <div class="fade-in">
+          <div class="optiqos-chip">The Conversiv platform</div>
+          <h2>Connect your <em>message</em><br />to your operations.</h2>
+          <p class="optiqos-sub">AgentExit. Built for owner-operators.</p>
+          <p>Most agencies hand you a brand book and a quarterly report. We do something different. AgentExit connects every channel you run, every campaign you launch, and every operational metric that backs them &mdash; into one view.</p>
+          <p>So your message gets sharper, your operations get tighter, and you can see the work happening &mdash; together, in the same place.</p>
+          <ul class="feature-list">
+            <li>
+              <div class="feat-num">1</div>
+              <div class="feat-text"><strong>One view of every channel</strong><span>Google. Meta. Email. Your CRM. Your website. All in one place.</span></div>
+            </li>
+            <li>
+              <div class="feat-num">2</div>
+              <div class="feat-text"><strong>Message-to-revenue map</strong><span>See which campaigns, channels, and messages are actually driving qualified business.</span></div>
+            </li>
+            <li>
+              <div class="feat-num">3</div>
+              <div class="feat-text"><strong>Plain-English next steps</strong><span>Where to spend the next dollar. Where to stop. Why.</span></div>
+            </li>
+            <li>
+              <div class="feat-num">4</div>
+              <div class="feat-text"><strong>Brand and operations, in sync</strong><span>When the message shifts, the dashboard knows. When the data shifts, the strategy adjusts.</span></div>
+            </li>
+          </ul>
         </div>
-        <div class="wn-stats">
-          <div class="wn-stat fade-in">
-            <div class="wn-stat-num">70%</div>
-            <div class="wn-stat-label">of small businesses listed for sale don&rsquo;t close</div>
-          </div>
-          <div class="wn-stat fade-in">
-            <div class="wn-stat-num">75%</div>
-            <div class="wn-stat-label">of owners who do sell regret it within 12 months</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROGRAMS -->
-    <section class="programs" id="programs">
-      <div class="container">
-        <span class="section-eyebrow">How we work</span>
-        <h2 class="section-heading fade-in">Two ways to work with us.</h2>
-        <div class="programs-grid">
-          <div class="prog-card fade-in">
-            <div class="prog-num">01</div>
-            <h3>Accelerate</h3>
-            <p class="prog-sub">For owners 12 to 36 months from selling</p>
-            <p>You know you&rsquo;ll sell. It&rsquo;s just not next year. Accelerate sharpens how your business shows up to a buyer, plugs into your numbers, and tells you exactly what to fix to grow your multiple. So when you&rsquo;re ready, you&rsquo;re ready.</p>
-            <ul class="prog-features">
-              <li>Exit Message Audit</li>
-              <li>Multiple Map (your roadmap)</li>
-              <li>AgentExit business view</li>
-              <li>Quarterly Multiple Reviews</li>
-              <li>A team that works on your timeline</li>
-            </ul>
-            <a href="/demo" class="prog-cta">Book a 15-minute conversation &rarr;</a>
-          </div>
-          <div class="prog-card fade-in">
-            <div class="prog-num">02</div>
-            <h3>Elevate</h3>
-            <p class="prog-sub">For owners 6 months or less from selling</p>
-            <p>You&rsquo;re going to market. Elevate writes the story buyers want to hear, organizes the operations they want to see, and builds the data room they&rsquo;ll ask for. So you walk in ready and walk out at the top of your range.</p>
-            <ul class="prog-features">
-              <li>Buyer Story Sprint</li>
-              <li>Buyer&rsquo;s One-Pager (the brief acquirers ask for)</li>
-              <li>Operations playbook</li>
-              <li>AgentExit exit-mode view</li>
-              <li>Data-room support through close</li>
-            </ul>
-            <a href="/demo" class="prog-cta">Book a 15-minute conversation &rarr;</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AGENTEXIT (reframed: agency capability that connects message + operations, NOT financial product) -->
-    <section class="optiqos" id="optiqos">
-      <div class="container">
-        <div class="optiqos-inner">
-          <div class="fade-in">
-            <div class="optiqos-chip">&#9857; The Conversiv platform</div>
-            <h2>Connect your <em>message</em><br />to your operations.</h2>
-            <p class="optiqos-sub">AgentExit. Built for owner-operators.</p>
-            <p>Most agencies hand you a brand book and a quarterly report. We do something different. AgentExit connects every channel you run, every campaign you launch, and every operational metric that backs them — into one view.</p>
-            <p>So your message gets sharper, your operations get tighter, and you can see the work happening — together, in the same place.</p>
-            <ul class="feature-list">
-              <li>
-                <div class="feat-num">1</div>
-                <div class="feat-text"><strong>One view of every channel</strong><span>Google. Meta. Email. Your CRM. Your website. All in one place.</span></div>
-              </li>
-              <li>
-                <div class="feat-num">2</div>
-                <div class="feat-text"><strong>Message-to-revenue map</strong><span>See which campaigns, channels, and messages are actually driving qualified business.</span></div>
-              </li>
-              <li>
-                <div class="feat-num">3</div>
-                <div class="feat-text"><strong>Plain-English next steps</strong><span>Where to spend the next dollar. Where to stop. Why.</span></div>
-              </li>
-              <li>
-                <div class="feat-num">4</div>
-                <div class="feat-text"><strong>Brand and operations, in sync</strong><span>When the message shifts, the dashboard knows. When the data shifts, the strategy adjusts.</span></div>
-              </li>
-            </ul>
-          </div>
-          <div class="optiqos-visual fade-in">
-            <div class="stat-display">
-              <div class="stat-display-head">AgentExit &middot; live view</div>
-              <div class="stat-display-items">
-                <div class="sdi">
-                  <span class="sdi-label">Brand Score</span>
-                  <div class="sdi-right"><span class="sdi-value">91%</span><span class="sdi-delta">Optimized</span></div>
-                </div>
-                <div class="sdi">
-                  <span class="sdi-label">Qualified Leads (MTD)</span>
-                  <div class="sdi-right"><span class="sdi-value">142</span><span class="sdi-delta">+18%</span></div>
-                </div>
-                <div class="sdi">
-                  <span class="sdi-label">Cost Per Lead</span>
-                  <div class="sdi-right"><span class="sdi-value">$38</span><span class="sdi-delta warn">Review</span></div>
-                </div>
-                <div class="sdi">
-                  <span class="sdi-label">Channel Mix Drift</span>
-                  <div class="sdi-right"><span class="sdi-value">-22%</span><span class="sdi-delta warn">Meta Q/Q</span></div>
-                </div>
-                <div class="sdi">
-                  <span class="sdi-label">Revenue Trend (MoM)</span>
-                  <div class="sdi-right"><span class="sdi-value">+12%</span><span class="sdi-delta">On track</span></div>
-                </div>
+        <div class="optiqos-visual fade-in">
+          <div class="stat-display">
+            <div class="stat-display-head">AgentExit &middot; live view</div>
+            <div class="stat-display-items">
+              <div class="sdi">
+                <span class="sdi-label">Brand Score</span>
+                <div class="sdi-right"><span class="sdi-value">91%</span><span class="sdi-delta">Optimized</span></div>
               </div>
-              <div class="insight-light">
-                <strong>Top insight:</strong> Your Google review cadence is half what comparable operators run. Closing the gap could lift qualified leads ~24% over the next quarter.
+              <div class="sdi">
+                <span class="sdi-label">Qualified Leads (MTD)</span>
+                <div class="sdi-right"><span class="sdi-value">142</span><span class="sdi-delta">+18%</span></div>
               </div>
+              <div class="sdi">
+                <span class="sdi-label">Cost Per Lead</span>
+                <div class="sdi-right"><span class="sdi-value">$38</span><span class="sdi-delta warn">Review</span></div>
+              </div>
+              <div class="sdi">
+                <span class="sdi-label">Channel Mix Drift</span>
+                <div class="sdi-right"><span class="sdi-value">-22%</span><span class="sdi-delta warn">Meta Q/Q</span></div>
+              </div>
+              <div class="sdi">
+                <span class="sdi-label">Revenue Trend (MoM)</span>
+                <div class="sdi-right"><span class="sdi-value">+12%</span><span class="sdi-delta">On track</span></div>
+              </div>
+            </div>
+            <div class="insight-light">
+              <strong>Top insight:</strong> Your Google review cadence is half what comparable operators run. Closing the gap could lift qualified leads ~24% over the next quarter.
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- QUOTES -->
-    <section class="quotes">
-      <div class="container">
-        <span class="section-eyebrow">Client voices</span>
-        <h2 class="section-heading fade-in">What our clients say.</h2>
-        <div class="quotes-grid">
-          <div class="quote-card fade-in">
-            <div class="q-mark">&ldquo;</div>
-            <p class="q-text">For the first time, I saw my business the way a buyer would. Conversiv gave me a real plan to maximize what I&rsquo;d built. Not just ambition. Steps.</p>
-            <div class="q-outcome">Exit value increased 2&times; in 18 months</div>
-            <div class="q-attr">
-              <img class="q-headshot" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&q=80&auto=format&fit=crop&crop=faces" alt="" />
-              <div class="q-meta">
-                <div class="q-name">Regional home services owner</div>
-                <div class="q-role">Accelerate &middot; Phoenix, AZ</div>
-              </div>
-            </div>
-          </div>
-          <div class="quote-card fade-in">
-            <div class="q-mark">&ldquo;</div>
-            <p class="q-text">We&rsquo;ve worked with agencies before. Conversiv is different. They understand that the exit IS the strategy. They built our messaging around that from day one.</p>
-            <div class="q-outcome">LOI received within 9 months of engagement</div>
-            <div class="q-attr">
-              <img class="q-headshot" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=160&q=80&auto=format&fit=crop&crop=faces" alt="" />
-              <div class="q-meta">
-                <div class="q-name">Founder, B2B professional services</div>
-                <div class="q-role">Elevate &middot; Chicago, IL</div>
-              </div>
-            </div>
-          </div>
-          <div class="quote-card fade-in">
-            <div class="q-mark">&ldquo;</div>
-            <p class="q-text">AgentExit gave us proof. When buyers asked hard questions about our numbers, we had the answers. Real ones. With the receipts.</p>
-            <div class="q-outcome">$400K+ improvement in final sale price</div>
-            <div class="q-attr">
-              <img class="q-headshot" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=160&q=80&auto=format&fit=crop&crop=faces" alt="" />
-              <div class="q-meta">
-                <div class="q-name">CEO, multi-location service business</div>
-                <div class="q-role">Elevate &middot; Atlanta, GA</div>
-              </div>
+  <!-- QUOTES (light gray) -->
+  <section class="quotes">
+    <div class="container">
+      <span class="section-eyebrow">Client voices</span>
+      <h2 class="section-heading fade-in">What our clients say.</h2>
+      <div class="quotes-grid">
+        <div class="quote-card fade-in">
+          <div class="q-mark">&ldquo;</div>
+          <p class="q-text">For the first time, I saw my business the way a buyer would. Conversiv gave me a real plan to maximize what I&rsquo;d built. Not just ambition. Steps.</p>
+          <div class="q-outcome">Exit value increased 2&times; in 18 months</div>
+          <div class="q-attr">
+            <img class="q-headshot" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&q=80&auto=format&fit=crop&crop=faces" alt="" />
+            <div class="q-meta">
+              <div class="q-name">Regional home services owner</div>
+              <div class="q-role">Accelerate &middot; Phoenix, AZ</div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="process" id="how">
-      <div class="container">
-        <span class="section-eyebrow">The process</span>
-        <h2 class="section-heading fade-in">How a partnership actually works.</h2>
-        <div class="steps-light">
-          <div class="step-l fade-in">
-            <div class="step-l-num">01</div>
-            <h3>Free exit audit</h3>
-            <p>We look at your message, your operations, your tools. You see exactly where value is being left on the table. No pitch. No commitment.</p>
+        <div class="quote-card fade-in">
+          <div class="q-mark">&ldquo;</div>
+          <p class="q-text">We&rsquo;ve worked with agencies before. Conversiv is different. They understand that the exit IS the strategy. They built our messaging around that from day one.</p>
+          <div class="q-outcome">LOI received within 9 months of engagement</div>
+          <div class="q-attr">
+            <img class="q-headshot" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=160&q=80&auto=format&fit=crop&crop=faces" alt="" />
+            <div class="q-meta">
+              <div class="q-name">Founder, B2B professional services</div>
+              <div class="q-role">Elevate &middot; Chicago, IL</div>
+            </div>
           </div>
-          <div class="step-l fade-in">
-            <div class="step-l-num">02</div>
-            <h3>Sharpen and connect</h3>
-            <p>We sharpen your message, connect your tools through AgentExit, and prioritize the moves that matter most. You see what&rsquo;s working in real time.</p>
-          </div>
-          <div class="step-l fade-in">
-            <div class="step-l-num">03</div>
-            <h3>Get more. Sooner.</h3>
-            <p>You grow your business value with intention. You exit on your terms. At the top of your range.</p>
+        </div>
+        <div class="quote-card fade-in">
+          <div class="q-mark">&ldquo;</div>
+          <p class="q-text">AgentExit gave us proof. When buyers asked hard questions about our numbers, we had the answers. Real ones. With the receipts.</p>
+          <div class="q-outcome">$400K+ improvement in final sale price</div>
+          <div class="q-attr">
+            <img class="q-headshot" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=160&q=80&auto=format&fit=crop&crop=faces" alt="" />
+            <div class="q-meta">
+              <div class="q-name">CEO, multi-location service business</div>
+              <div class="q-role">Elevate &middot; Atlanta, GA</div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTA DARK -->
-    <section class="cta-dark" id="contact">
-      <div class="container">
-        <h2>Get more.<br /><em>Sooner.</em></h2>
-        <p>Start with a free exit audit. No pitch. No commitment. Just a clear picture of what your business is worth — and how to get more for it.</p>
-        <div class="cta-dark-actions">
-          <a href="/start" class="btn-amber">Free exit audit &rarr;</a>
-          <a href="/demo" class="btn-ghost-light">Book your demo</a>
+  <!-- PROCESS (white) -->
+  <section class="process" id="how">
+    <div class="container">
+      <span class="section-eyebrow">The process</span>
+      <h2 class="section-heading fade-in">How a partnership actually works.</h2>
+      <div class="steps-light">
+        <div class="step-l fade-in">
+          <div class="step-l-num">01</div>
+          <h3>Free exit audit</h3>
+          <p>We look at your message, your operations, your tools. You see exactly where value is being left on the table. No pitch. No commitment.</p>
         </div>
-        <p class="cta-note">Magic link to your inbox &middot; No password &middot; No commitment</p>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="container">
-        <div class="footer-inner">
-          <div>
-            <div class="footer-brand-logo">Conversiv</div>
-            <div class="footer-brand-tag">The Exit Agency</div>
-            <p class="footer-brand-desc">We help owner-operators position their business for a max selling price. So you get more for it. Sooner.</p>
-          </div>
-          <div>
-            <div class="footer-col-head">Services</div>
-            <ul class="footer-links-list">
-              <li><a href="/">Exit Agency</a></li>
-              <li><a href="/services/messaging">Messaging &amp; Brand</a></li>
-              <li><a href="/agencies">For Agencies</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="footer-col-head">Platform</div>
-            <ul class="footer-links-list">
-              <li><a href="/optiqos">OptiqOS</a></li>
-              <li><a href="/agentexit">AgentExit</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="footer-col-head">Connect</div>
-            <ul class="footer-links-list">
-              <li><a href="/start">Free exit audit</a></li>
-              <li><a href="/demo">Book your demo</a></li>
-              <li><a href="mailto:hello@conversiv.com">hello@conversiv.com</a></li>
-            </ul>
-          </div>
+        <div class="step-l fade-in">
+          <div class="step-l-num">02</div>
+          <h3>Sharpen and connect</h3>
+          <p>We sharpen your message, connect your tools through AgentExit, and prioritize the moves that matter most. You see what&rsquo;s working in real time.</p>
         </div>
-        <div class="footer-bar">
-          <div class="footer-copy">&copy; 2026 Conversiv. All rights reserved.</div>
-          <div class="footer-copy">Exit strategy &middot; Message optimization &middot; AgentExit</div>
+        <div class="step-l fade-in">
+          <div class="step-l-num">03</div>
+          <h3>Get more. Sooner.</h3>
+          <p>You grow your business value with intention. You exit on your terms. At the top of your range.</p>
         </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script is:inline>
-      /* Fade-in observer */
-      const fadeObs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
-      }, { threshold: 0.12 });
-      document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
-    </script>
-
-  </body>
-</html>
+  <!-- CTA DARK (black, from layout) -->
+  <section class="cta-dark" id="contact">
+    <div class="container">
+      <h2>Get more.<br /><em>Sooner.</em></h2>
+      <p>Start with a free exit audit. No pitch. No commitment. Just a clear picture of what your business is worth &mdash; and how to get more for it.</p>
+      <div class="cta-dark-actions">
+        <a href="/start" class="btn-amber">Free exit audit &rarr;</a>
+        <a href="/demo" class="btn-ghost-light">Book your demo</a>
+      </div>
+      <p class="cta-note">Magic link to your inbox &middot; No password &middot; No commitment</p>
+    </div>
+  </section>
+</Site>
