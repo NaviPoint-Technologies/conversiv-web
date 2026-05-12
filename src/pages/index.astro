@@ -145,6 +145,27 @@ import Site from '../layouts/Site.astro';
     .step-l h3 { font-family: var(--sans); font-size: 1.1rem; color: var(--ink); margin-bottom: 0.7rem; font-weight: 600; letter-spacing: -0.005em; }
     .step-l p { font-size: 0.92rem; color: var(--gray); line-height: 1.75; font-weight: 400; }
 
+    /* ── HERO MISSION LINE (Lippincott "name the buyer" pattern) ── */
+    .hero-mission { font-family: var(--sans); font-size: 0.95rem; color: var(--blue); max-width: 620px; margin: -1rem auto 2.25rem; line-height: 1.55; font-weight: 500; letter-spacing: 0.005em; }
+    .hero-mission strong { font-weight: 700; color: var(--navy); }
+
+    /* ── CAMPAIGN CLAIM (Siegel+Gale poster, black) ── */
+    .campaign { background: var(--black); padding: 7rem 0; }
+    .campaign-inner { max-width: 940px; margin: 0 auto; text-align: center; }
+    .campaign-eyebrow { font-family: var(--font-nav); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.75rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+    .campaign-eyebrow::before, .campaign-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--blue); }
+    .campaign-headline { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 4.4vw, 3.6rem); line-height: 1.18; color: #fff; margin-bottom: 1.75rem; letter-spacing: -0.005em; }
+    .campaign-headline em { font-style: normal; color: var(--blue); font-weight: 400; }
+    .campaign-sub { font-family: var(--sans); font-size: 1.05rem; color: rgba(255,255,255,0.72); max-width: 640px; margin: 0 auto; line-height: 1.7; font-weight: 400; }
+
+    /* ── VALUES / 4-PILLAR (Mother pattern, white) ── */
+    .values { background: var(--light2); padding: 7rem 0; border-bottom: 1px solid var(--light3); }
+    .values-header { max-width: 720px; margin: 0 0 4rem; }
+    .values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3.25rem 4rem; max-width: 1080px; margin: 0 auto; }
+    .value-card h3 { font-family: var(--sans); font-weight: 600; font-size: 1.55rem; color: var(--blue); margin-bottom: 0.85rem; letter-spacing: -0.005em; }
+    .value-card p { font-size: 1rem; color: var(--ink); line-height: 1.7; font-weight: 400; }
+    @media (max-width: 720px) { .values-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
     /* ── Responsive ──────────────────────────────────────────────────── */
     @media (max-width: 960px) {
       .optiqos-inner, .programs-grid, .steps-light, .quotes-grid, .wn-stats { grid-template-columns: 1fr; }
@@ -163,6 +184,9 @@ import Site from '../layouts/Site.astro';
       </h1>
       <p class="hero-sub fade-in">
         You get paid to work your business, but are you ready to get paid not to? At Conversiv, we&rsquo;re here to get you there. We help you position your business for a max selling price.
+      </p>
+      <p class="hero-mission fade-in">
+        Built for <strong>owner-operators</strong> preparing for sale &mdash; we sharpen the message that maximizes your multiple.
       </p>
       <div class="hero-actions fade-in">
         <a href="/start" class="btn-ink">Free exit audit &rarr;</a>
@@ -215,6 +239,49 @@ import Site from '../layouts/Site.astro';
         <p>How? By using smarter strategy and technology to better connect you to your audiences and your operations. This allows you to optimize your revenue, and minimize wasted time, effort and money. We&rsquo;ll show you how.</p>
         <div class="pillar-cta">
           <a href="/start" class="btn-ink">Free exit audit &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPAIGN CLAIM (black, Siegel+Gale poster pattern) -->
+  <section class="campaign">
+    <div class="container">
+      <div class="campaign-inner fade-in">
+        <span class="campaign-eyebrow">The Conversiv premise</span>
+        <h2 class="campaign-headline">
+          Multiples aren&rsquo;t won at close.<br /><em>They&rsquo;re won 18 months earlier.</em>
+        </h2>
+        <p class="campaign-sub">
+          Buyers read your business months before they make an offer. The work to win at the table starts long before you sit at it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES / 4-PILLAR (white, Mother Design pattern) -->
+  <section class="values">
+    <div class="container">
+      <div class="values-header fade-in">
+        <span class="section-eyebrow">The Conversiv discipline</span>
+        <h2 class="section-heading">Four moves. <em>One outcome.</em></h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-in">
+          <h3>Listen.</h3>
+          <p>We start with empirical interviews of your leadership, your customers, and your team. The buyer&rsquo;s read of your business is hiding in what they already say.</p>
+        </div>
+        <div class="value-card fade-in">
+          <h3>Sharpen.</h3>
+          <p>We strip your message of generic agency-speak until your category position is clear in one sentence &mdash; and your competitors can&rsquo;t claim it.</p>
+        </div>
+        <div class="value-card fade-in">
+          <h3>Connect.</h3>
+          <p>We tie your sharpened message to your operations &mdash; every channel, every campaign, every metric &mdash; so the story your buyer reads is backed by numbers.</p>
+        </div>
+        <div class="value-card fade-in">
+          <h3>Prove.</h3>
+          <p>We package the work so any acquirer can read your business in 10 minutes &mdash; narrative, numbers, and proof, on a single page.</p>
         </div>
       </div>
     </div>
