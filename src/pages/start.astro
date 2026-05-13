@@ -1,0 +1,116 @@
+---
+import Site from '../layouts/Site.astro';
+const inboxEmail = 'hello@conversiv.com';
+const subjectLine = encodeURIComponent('Free exit audit — request');
+const bodyLine = encodeURIComponent('Hi Conversiv team,\n\nI\'d like to start a free exit audit.\n\nA bit about my business:\n- Company name:\n- Industry:\n- Approximate revenue:\n- Timeline to a possible sale:\n\nThanks,\n');
+const mailto = `mailto:${inboxEmail}?subject=${subjectLine}&body=${bodyLine}`;
+---
+<Site
+  title="Start your free exit audit — Conversiv"
+  description="Start your free exit audit with Conversiv. 15 minutes. No pitch. No commitment. A clear picture of what your business is worth and how to get more for it."
+>
+  <style is:inline slot="head">
+    .form-card { background: var(--light2); border: 1px solid var(--light3); padding: 3rem; max-width: 720px; margin: 0 auto; }
+    .form-card h2 { font-family: var(--serif); font-weight: 300; font-size: 1.6rem; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.25; }
+    .form-steps { background: var(--light); padding: 5rem 0 7rem; border-bottom: 1px solid var(--light3); }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; max-width: 1080px; margin: 0 auto; }
+    .step { padding-right: 1rem; }
+    .step-num { font-family: var(--serif); font-weight: 300; font-size: 2.4rem; color: var(--blue); opacity: 0.5; line-height: 1; margin-bottom: 0.85rem; }
+    .step h3 { font-family: var(--sans); font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 0.7rem; letter-spacing: -0.005em; }
+    .step p { font-size: 0.92rem; color: var(--ink); line-height: 1.65; font-weight: 400; }
+    .form-row { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .form-row label { font-family: var(--font-nav); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); }
+    .form-row input, .form-row textarea { font-family: var(--sans); font-size: 1rem; color: var(--ink); padding: 0.85rem 1rem; border: 1px solid var(--light3); background: #fff; border-radius: 0; font-weight: 400; }
+    .form-row input:focus, .form-row textarea:focus { outline: 2px solid var(--blue); outline-offset: -1px; border-color: var(--blue); }
+    .form-row textarea { resize: vertical; min-height: 120px; }
+    .form-or { text-align: center; padding: 1.25rem 0; font-family: var(--font-nav); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray2); position: relative; }
+    .form-or::before, .form-or::after { content: ''; position: absolute; top: 50%; width: calc(50% - 2.5rem); height: 1px; background: var(--light3); }
+    .form-or::before { left: 0; }
+    .form-or::after { right: 0; }
+    .form-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+    .alt-contact { text-align: center; padding-top: 2rem; border-top: 1px solid var(--light3); margin-top: 0.5rem; font-size: 0.85rem; color: var(--gray); font-weight: 400; }
+    .alt-contact a { color: var(--blue); font-weight: 600; }
+
+    @media (max-width: 720px) {
+      .steps-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .form-card { padding: 2rem; }
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner fade-in">
+        <div class="page-hero-eyebrow">Free exit audit</div>
+        <h1>15 minutes. No pitch. <em>A clear picture.</em></h1>
+        <p class="page-hero-sub">
+          Tell us a little about your business and we&rsquo;ll come back with a free 15-minute audit &mdash; a clear read on your current message, your operations, and where value is being left on the table.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT HAPPENS NEXT -->
+  <section class="form-steps">
+    <div class="container">
+      <div class="steps-grid">
+        <div class="step fade-in">
+          <div class="step-num">01</div>
+          <h3>You tell us a little</h3>
+          <p>Industry, approximate revenue, and timeline. Two minutes. That&rsquo;s the whole intake.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">02</div>
+          <h3>We do the work</h3>
+          <p>We read your message, your operations, and your digital footprint. We come back with a one-page diagnostic on what&rsquo;s working and what&rsquo;s leaking value.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">03</div>
+          <h3>You decide what&rsquo;s next</h3>
+          <p>Take the diagnostic and run with it. Or talk to us about Accelerate or Elevate. No pressure, no commitment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section style="background: var(--light2); padding: 7rem 0;">
+    <div class="container">
+      <div class="form-card fade-in">
+        <h2>Start your free audit.</h2>
+        <form action={mailto} method="get">
+          <div class="form-row">
+            <label for="company">Company name</label>
+            <input id="company" name="company" type="text" required placeholder="e.g. Smith &amp; Co. Plumbing" />
+          </div>
+          <div class="form-row">
+            <label for="email">Your email</label>
+            <input id="email" name="email" type="email" required placeholder="you@yourcompany.com" />
+          </div>
+          <div class="form-row">
+            <label for="notes">A bit about your business <span style="font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--gray2);">(industry, revenue range, timeline)</span></label>
+            <textarea id="notes" name="notes" placeholder="We're a 14-truck plumbing operation in Phoenix, ~$3M revenue, thinking about a sale in 18-24 months..."></textarea>
+          </div>
+          <div class="form-cta">
+            <button type="submit" class="btn-ink">Send my audit request &rarr;</button>
+          </div>
+          <p class="alt-contact">
+            Prefer email? Write to <a href={`mailto:${inboxEmail}`}>{inboxEmail}</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA DARK -->
+  <section class="cta-dark">
+    <div class="container">
+      <h2>Or skip the form. <em>Just email us.</em></h2>
+      <p>If you&rsquo;d rather start with a conversation, write to hello@conversiv.com. We read every message.</p>
+      <div class="cta-dark-actions">
+        <a href={`mailto:${inboxEmail}`} class="btn-ghost-light">Email hello@conversiv.com &rarr;</a>
+        <a href="/" class="btn-ghost-light">Back to homepage</a>
+      </div>
+    </div>
+  </section>
+</Site>

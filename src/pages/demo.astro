@@ -1,0 +1,112 @@
+---
+import Site from '../layouts/Site.astro';
+const inboxEmail = 'hello@conversiv.com';
+const subjectLine = encodeURIComponent('AgentExit demo — request');
+const bodyLine = encodeURIComponent('Hi Conversiv team,\n\nI\'d like to book a demo of AgentExit.\n\nA bit about my business:\n- Company name:\n- Industry:\n- Tools we currently use (CRM, ads, finance, etc.):\n- Best times for a 30-minute call:\n\nThanks,\n');
+const mailto = `mailto:${inboxEmail}?subject=${subjectLine}&body=${bodyLine}`;
+---
+<Site
+  title="Book your AgentExit demo — Conversiv"
+  description="Book a live demo of AgentExit. We'll connect a sandbox to two or three of your live sources and walk you through what AgentExit would see on day one."
+>
+  <style is:inline slot="head">
+    .form-card { background: var(--light2); border: 1px solid var(--light3); padding: 3rem; max-width: 720px; margin: 0 auto; }
+    .form-card h2 { font-family: var(--serif); font-weight: 300; font-size: 1.6rem; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.25; }
+    .form-steps { background: var(--light); padding: 5rem 0 7rem; border-bottom: 1px solid var(--light3); }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; max-width: 1080px; margin: 0 auto; }
+    .step { padding-right: 1rem; }
+    .step-num { font-family: var(--serif); font-weight: 300; font-size: 2.4rem; color: var(--blue); opacity: 0.5; line-height: 1; margin-bottom: 0.85rem; }
+    .step h3 { font-family: var(--sans); font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 0.7rem; letter-spacing: -0.005em; }
+    .step p { font-size: 0.92rem; color: var(--ink); line-height: 1.65; font-weight: 400; }
+    .form-row { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .form-row label { font-family: var(--font-nav); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); }
+    .form-row input, .form-row textarea { font-family: var(--sans); font-size: 1rem; color: var(--ink); padding: 0.85rem 1rem; border: 1px solid var(--light3); background: #fff; border-radius: 0; font-weight: 400; }
+    .form-row input:focus, .form-row textarea:focus { outline: 2px solid var(--blue); outline-offset: -1px; border-color: var(--blue); }
+    .form-row textarea { resize: vertical; min-height: 120px; }
+    .form-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+    .alt-contact { text-align: center; padding-top: 2rem; border-top: 1px solid var(--light3); margin-top: 0.5rem; font-size: 0.85rem; color: var(--gray); font-weight: 400; }
+    .alt-contact a { color: var(--blue); font-weight: 600; }
+
+    @media (max-width: 720px) {
+      .steps-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .form-card { padding: 2rem; }
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner fade-in">
+        <div class="page-hero-eyebrow">Book a demo</div>
+        <h1>See AgentExit on <em>your data.</em></h1>
+        <p class="page-hero-sub">
+          We&rsquo;ll connect a sandbox to two or three of your live sources &mdash; Google, Meta, your CRM, your finance system &mdash; and walk you through what AgentExit would see on day one. 30 minutes, live, no credit card required.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT HAPPENS NEXT -->
+  <section class="form-steps">
+    <div class="container">
+      <div class="steps-grid">
+        <div class="step fade-in">
+          <div class="step-num">01</div>
+          <h3>You tell us what you run</h3>
+          <p>Industry, current marketing stack, and 2&ndash;3 sources you&rsquo;d like us to plug in for the demo.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">02</div>
+          <h3>We set up your sandbox</h3>
+          <p>Read-only connections to your live data. We do the wiring in advance so the demo is on your numbers, not on someone else&rsquo;s.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">03</div>
+          <h3>We walk it through, live</h3>
+          <p>A 30-minute working session. You see what AgentExit sees. Bring questions. No pitch deck.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section style="background: var(--light2); padding: 7rem 0;">
+    <div class="container">
+      <div class="form-card fade-in">
+        <h2>Request your demo.</h2>
+        <form action={mailto} method="get">
+          <div class="form-row">
+            <label for="company">Company name</label>
+            <input id="company" name="company" type="text" required placeholder="e.g. Smith &amp; Co. Plumbing" />
+          </div>
+          <div class="form-row">
+            <label for="email">Your email</label>
+            <input id="email" name="email" type="email" required placeholder="you@yourcompany.com" />
+          </div>
+          <div class="form-row">
+            <label for="notes">What tools do you run? <span style="font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--gray2);">(Google, Meta, your CRM, QuickBooks, etc.)</span></label>
+            <textarea id="notes" name="notes" placeholder="We run Google Ads, Meta Ads, HubSpot, and QuickBooks. Best to demo on the Google + HubSpot + QBO stack..."></textarea>
+          </div>
+          <div class="form-cta">
+            <button type="submit" class="btn-ink">Send my demo request &rarr;</button>
+          </div>
+          <p class="alt-contact">
+            Prefer email? Write to <a href={`mailto:${inboxEmail}`}>{inboxEmail}</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA DARK -->
+  <section class="cta-dark">
+    <div class="container">
+      <h2>Not ready for a demo? <em>Start with an audit.</em></h2>
+      <p>If a sandbox demo is a bigger commitment than you&rsquo;re ready for, start with a free 15-minute exit audit. No setup, no logins.</p>
+      <div class="cta-dark-actions">
+        <a href="/start" class="btn-ghost-light">Free exit audit &rarr;</a>
+        <a href="/" class="btn-ghost-light">Back to homepage</a>
+      </div>
+    </div>
+  </section>
+</Site>

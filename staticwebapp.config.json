@@ -1,4 +1,16 @@
 {
+  "routes": [
+    {
+      "route": "/optiqos",
+      "redirect": "/agentexit",
+      "statusCode": 301
+    },
+    {
+      "route": "/optiqos/*",
+      "redirect": "/agentexit",
+      "statusCode": 301
+    }
+  ],
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": [
